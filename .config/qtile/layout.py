@@ -49,6 +49,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='pinentry'),  # GPG key password entry
     Match(title='XBindKey: Hit a key'),
     Match(wm_class='vlc'),
+    Match(role='pop-up'),
     # st floating (custom)
     Match(wm_class='st-floating'),
     # Gufw

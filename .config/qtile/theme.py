@@ -40,7 +40,7 @@ layout_default = {
 }
 
 widget_defaults = dict(
-    font = 'Overpass Bold',
+    font = 'Overpass Nerd Font',
     fontsize = 12,
     padding = 5,
     padding_x = 4,

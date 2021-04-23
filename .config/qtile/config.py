@@ -42,8 +42,9 @@ floating_st = 'st -c st-floating'
 def autostart():
     """Process all startup application and code"""
     processes = [
+        ['pulseaudio', '--start'],
         ['setxkbmap', '-option', 'caps:swapescape'],
-        ['sh', '$HOME/.config/qtile/gnome-keyring.sh'],
+        ['$HOME/.config/qtile/gnome-keyring.sh'],
     ]
 
     for process in processes:
@@ -169,7 +170,7 @@ groups = [
           layout='columns',
           label='6'),
     Group(name='7',
-          layout='stack',
+          layout='columns',
           label='7'),
     Group(name='8',
           layout='columns',
@@ -249,7 +250,7 @@ bar_widget = [
     ),
     BetterGmail(
         label_id = 'Label_251486169706880594',
-        display_format = '[Mail] {MessageUnread}',
+        display_format = '  {MessageUnread}',
         send_notification = False,
         color_unread = COLORS.get('yellow'),
         color_no_unread = COLORS.get('magenta'),
@@ -261,11 +262,11 @@ bar_widget = [
     widget.Wlan( # pylint: disable=E1101
         foreground = COLORS.get('blue'),
         interface = 'wlp2s0',
-        format = '[WiFi] {essid}',
+        format = '  {essid}',
     ),
     widget.Volume( # pylint: disable=E1101
         foreground = COLORS.get('blue'),
-        fmt = '[Vol] {}',
+        fmt = '墳 {}',
     ),
     widget.Battery( # pylint: disable=E1101
         foreground = COLORS.get('green'),
@@ -273,7 +274,7 @@ bar_widget = [
         charge_char = 'charging',
         discharge_char = 'discahrging',
         full_char = 'full',
-        format = '[Batt-{char}] {percent:2.0%}',
+        format = '  {percent:2.0%}',
         show_short_text = False
     ),
     widget.Clock(
