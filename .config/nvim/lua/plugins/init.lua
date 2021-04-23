@@ -1,0 +1,7 @@
+require("plugins.treesitter")
+require("plugins.hardline")
+require("plugins.telescope")
+require("plugins.nvimtree")
+require("plugins.barbar")
+require("plugins.floaterm")
+require("plugins.gitsigns")
