@@ -14,3 +14,9 @@ map("n", "<A-h>", "<C-w>h")
 -- split window
 map("n", "<A-\\>", "<CMD>vs<CR>")
 map("n", "<C-\\>", "<CMD>sp<CR>")
+
+-- quick nohl
+map("n", "<leader><CR>", "<CMD>nohl<CR>")
+
+-- easy quit map
+map("n", "<A-q>", "<CMD>q<CR>")

@@ -1,7 +1,7 @@
 require("configs")
 
 -- choose colorscheme
-require("colorscheme.nord")
+require("colorscheme.bm")
 
 -- lsp
 require("lsp")

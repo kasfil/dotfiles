@@ -33,4 +33,17 @@ function M.map(mode, key, result, opts)
     api.nvim_set_keymap(mode, key, result, opts)
 end
 
+function M.highlink(group, linked)
+    cmd(string.format("hi! link " .. group .. " " .. linked))
+end
+
+
+function M.highlight(group, styles)
+  local gui = styles.gui and 'gui='..styles.gui or 'gui=NONE'
+  local sp = styles.sp and 'guisp='..styles.sp or 'guisp=NONE'
+  local fg = styles.fg and 'guifg='..styles.fg or 'guifg=NONE'
+  local bg = styles.bg and 'guibg='..styles.bg or 'guibg=NONE'
+  vim.api.nvim_command('highlight! '..group..' '..gui..' '..sp..' '..fg..' '..bg)
+end
+
 return M

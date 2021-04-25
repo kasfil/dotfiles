@@ -56,10 +56,11 @@ apply_options(
         foldlevelstart = 99;
         ruler          = false;
         list           = true;
-        showtabline    = 2;
-        winwidth       = 30;
+        showtabline    = 1;
+        winwidth       = 20;
         winminwidth    = 10;
         pumheight      = 15;
+        pumwidth       = 60;
         helpheight     = 12;
         previewheight  = 12;
         showcmd        = false;
@@ -68,11 +69,10 @@ apply_options(
         laststatus     = 2;
         display        = "lastline";
         showbreak      = "↳  ";
-        listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↵";
+        listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↲";
         fillchars      = [[eob:\ ]];
         pumblend       = 10;
         winblend       = 10;
-        undofile       = true;
         synmaxcol      = 2500;
         formatoptions  = "1jcroql";
         textwidth      = 80;
@@ -85,10 +85,10 @@ apply_options(
         linebreak      = true;
         number         = true;
         relativenumber = true;
-        colorcolumn    = "80";
+        colorcolumn    = "100";
         foldenable     = true;
         signcolumn     = "yes";
-        conceallevel   = 2;
+        conceallevel   = 3;
         concealcursor  = "niv";
     }
 )
