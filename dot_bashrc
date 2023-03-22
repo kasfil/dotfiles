@@ -1,0 +1,63 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
+
+unset rc
+
+eval "$(starship init bash)"
+eval "$(fnm env --use-on-cd)"
+eval "$(zoxide init bash)"
+eval "$(register-python-argcomplete pipx)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+source $HOME/.bash_scripts/nnn.sh
+source $HOME/.bash_scripts/drone_repo.sh
+source $HOME/.bash_scripts/brew_scripts.sh
+
+HISTIGNORE="$HISTIGNORE:jrnl *:nvim*:z:z *:source *:cd *:code*:codium*:docker-compose *:poetry*:ls *"
+
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="/home/kasf/.local/share/bob/nvim-bin:$PATH"
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/pydev
+source virtualenvwrapper_lazy.sh
+
+alias luamake=/home/kasf/github/lua-language-server/3rd/luamake/luamake
+alias wgup="sudo wg-quick up"
+alias wgdown="sudo wg-quick down"
+alias c=clear
+alias ls=exa
+
+# Created by `pipx` on 2022-10-30 13:19:20
+export PATH="$PATH:/home/kasf/.local/bin"
+
+# allow run podman with docker-compose
+export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
+
+# fnm
+export PATH=/home/kasf/.fnm:$PATH
