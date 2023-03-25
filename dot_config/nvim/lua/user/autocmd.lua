@@ -23,3 +23,10 @@ aucmd("FileType", {
     vim.opt.softtabstop = 4
   end,
 })
+
+aucmd("BufEnter", {
+  pattern = {"prompt", "nofile"},
+  callback = function()
+    vim.bo.codeium_enabled = false
+  end
+})

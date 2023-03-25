@@ -5,19 +5,20 @@ return {
 		opts = {},
 	},
 	{
-		-- temporary disable because newlines bug in python pytest library
 		"ray-x/lsp_signature.nvim",
 		lazy = false,
-		enabled = false,
 		event = { "InsertEnter" },
 		opts = {
 			hint_prefix = "",
+			floating_window_off_x = 15,
+			floating_window_off_y = -2,
 			handler_opt = {
 				border = "single",
 				winhighlight = "Normal:NormalFloat,FloatBorder:CmpFloatBorder,Pmenu:NormalFloat",
 			},
 			trigger_on_newline = true,
 			padding = " ",
+			toggle_key = "<M-x>",
 		},
 	},
 	{
