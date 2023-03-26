@@ -4,11 +4,10 @@ return {
 	init = function()
 		vim.g.codeium_no_map_tab = true
 		vim.g.codeium_filetypes = {
-			prompt = false,
+			["neo-tree-popup"] = false,
 			TelescopePrompt = false,
 			qf = false,
 			help = false,
-			nofile = false,
 			quickfix = false,
 		}
 	end,
