@@ -54,5 +54,6 @@ alias ls=exa
 eval "$(starship init bash)"
 eval "$(fnm env --use-on-cd)"
 eval "$(zoxide init bash)"
+eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
 
