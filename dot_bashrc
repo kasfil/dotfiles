@@ -32,6 +32,7 @@ HISTIGNORE="$HISTIGNORE:jrnl *:nvim*:z:z *:source *:cd *:code*:codium*:docker-co
 export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 
 source $HOME/.bash_scripts/nnn.sh
+source $HOME/.bash_scripts/drone_repo.sh
 
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
