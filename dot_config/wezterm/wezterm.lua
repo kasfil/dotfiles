@@ -1,21 +1,86 @@
 local wezterm = require("wezterm")
 
+local function basename(s)
+	return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+local function is_vim(pane)
+	local process_name = basename(pane:get_foreground_process_name())
+	return process_name == "vim" or process_name == "nvim"
+end
+
+local direction_keys = {
+	Left = "h",
+	Down = "j",
+	Up = "k",
+	Right = "l",
+
+	-- reverse lookup
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+}
+
+local function split_nav(resize_or_move, key)
+	local direction = resize_or_move == "resize" and key or direction_keys[key]
+	key = resize_or_move == "resize" and key .. "Arrow" or key
+	local mods = "CTRL"
+	return {
+		key = key,
+		mods = mods,
+		action = wezterm.action_callback(function(win, pane)
+			if is_vim(pane) then
+				-- pass the keys through to vim/nvim
+				-- for nvim resize key i map it with alt arrow key
+				win:perform_action({
+					SendKey = {
+						key = key,
+						mods = mods,
+					},
+				}, pane)
+			else
+				if resize_or_move == "resize" then
+					win:perform_action({ AdjustPaneSize = { direction, 3 } }, pane)
+				else
+					win:perform_action({ ActivatePaneDirection = direction }, pane)
+				end
+			end
+		end),
+	}
+end
+
 return {
-  color_scheme = "Catppuccin Macchiato",
-  enable_wayland = false,
-  default_prog = { "/bin/bash" },
+	color_scheme = "Catppuccin Macchiato",
+	enable_wayland = false,
+	default_prog = { "/bin/bash" },
 
-  font = wezterm.font_with_fallback({
-    {family = "JetBrains Mono", harfbuzz_features = {"zero=1", "cv06=1"}},
-    {family = "Symbols Nerd Fonts"},
-    {family = "Hack Nerd Font"},
-  }),
+	font = wezterm.font_with_fallback({
+		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1", "calt=0" } },
+		{ family = "Symbols Nerd Fonts" },
+		{ family = "Hack Nerd Font" },
+	}),
 
-  font_size = 10,
+	font_size = 11,
 
-  use_fancy_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
-  tab_bar_at_bottom = true,
+	use_fancy_tab_bar = false,
+	hide_tab_bar_if_only_one_tab = true,
+	tab_bar_at_bottom = true,
 
-  window_decorations = "NONE",
+	window_decorations = "NONE",
+	debug_key_events = true,
+
+	keys = {
+		-- move between split panes
+		split_nav("move", "h"),
+		split_nav("move", "j"),
+		split_nav("move", "k"),
+		split_nav("move", "l"),
+
+		-- resize panes
+		split_nav("resize", "Left"),
+		split_nav("resize", "Down"),
+		split_nav("resize", "Up"),
+		split_nav("resize", "Right"),
+	},
 }
