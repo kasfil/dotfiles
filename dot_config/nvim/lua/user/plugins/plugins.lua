@@ -8,18 +8,39 @@ return {
 		"ray-x/lsp_signature.nvim",
 		lazy = false,
 		event = { "InsertEnter" },
-		opts = {
-			hint_prefix = "",
-			floating_window_off_x = 15,
-			floating_window_off_y = -2,
-			handler_opt = {
-				border = "single",
-				winhighlight = "Normal:NormalFloat,FloatBorder:CmpFloatBorder,Pmenu:NormalFloat",
-			},
-			trigger_on_newline = true,
-			padding = " ",
-			toggle_key = "<M-x>",
-		},
+		opts = function()
+			local function offsety()
+				local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
+				local pumheight = vim.o.pumheight -- my default 10
+				local winline = vim.fn.winline() -- line number in the window
+				local winheight = vim.fn.winheight(0)
+
+				-- window top
+				if linenr < pumheight then
+					return pumheight
+				end
+
+				-- window bottom
+				if winheight - winline < pumheight then
+					return -pumheight
+				end
+
+				return 0
+			end
+
+			return {
+				hint_prefix = "",
+				floating_window_off_x = 0,
+				floating_window_off_y = offsety,
+				handler_opt = {
+					border = "single",
+					winhighlight = "Normal:NormalFloat,FloatBorder:CmpFloatBorder,Pmenu:NormalFloat",
+				},
+				trigger_on_newline = true,
+				padding = " ",
+				toggle_key = "<M-x>",
+			}
+		end,
 	},
 	{
 		"folke/todo-comments.nvim",
