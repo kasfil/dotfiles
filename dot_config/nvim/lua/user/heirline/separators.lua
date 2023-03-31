@@ -1,4 +1,4 @@
 return {
-  breadcrumbs = "  ",
-  path = "  ",
+	breadcrumbs = "  ",
+	path = "  ",
 }
