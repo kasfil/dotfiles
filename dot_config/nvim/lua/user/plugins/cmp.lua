@@ -3,12 +3,10 @@ return {
 	opts = function(_, opts)
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		local get_icon = require("astronvim.utils").get_icon
 		local function has_words_before()
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-		end
-		local t = function(keys, mode)
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode or "n", true)
 		end
 
 		opts.window = {
@@ -32,6 +30,7 @@ return {
 					mode = "symbol_text",
 					maxwidth = 50,
 					ellipsis_char = "...",
+					symbol_map = { Codeium = get_icon("Codeium") .. " codeium" },
 				})(entry, vim_item)
 				local strings = vim.split(kind.kind, "%s", { trimempty = true })
 				kind.kind = "" .. strings[1] .. " "
@@ -39,14 +38,20 @@ return {
 				if strings[2] == "" or strings[2] == nil then
 					strings[2] = "Codeium"
 				end
+
 				kind.menu = "  [" .. strings[2] .. "]"
 
 				return kind
 			end,
 		}
 
+		opts.experimental = {
+			ghost_text = true,
+		}
+
 		opts.sources = cmp.config.sources({
 			{ name = "nvim_lsp", priority = 1000 },
+			{ name = "codeium", priority = 775 },
 			{ name = "luasnip", priority = 750 },
 			{ name = "buffer", priority = 500 },
 			{ name = "path", priority = 250 },
@@ -54,13 +59,21 @@ return {
 
 		opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item()
-			elseif vim.fn["has_key"](vim.api.nvim_buf_get_var(0, "_codeium_completions"), "index") then
-				t("<Plug>(codeium-accept)", "i")
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" })
+
+		opts.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end

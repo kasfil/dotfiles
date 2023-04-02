@@ -53,14 +53,14 @@ return {
 			status.component.fill(),
 			status.component.cmd_info(),
 			status.component.fill(),
-			{
-				provider = function()
-					local codeium_status = vim.api.nvim_call_function("codeium#GetStatusString", {})
-					return " Codeium: " .. codeium_status .. " "
-				end,
-				hl = { fg = p.blue },
-				surround = status.utils.surround({ " ", " " }),
-			},
+			-- {
+			-- 	provider = function()
+			-- 		local codeium_status = vim.api.nvim_call_function("codeium#GetStatusString", {})
+			-- 		return " Codeium: " .. codeium_status .. " "
+			-- 	end,
+			-- 	hl = { fg = p.blue },
+			-- 	surround = status.utils.surround({ " ", " " }),
+			-- },
 			status.component.lsp(),
 			status.component.treesitter(),
 			status.component.nav(),
