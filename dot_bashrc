@@ -57,3 +57,5 @@ eval "$(zoxide init bash)"
 eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
 
+
+source /home/kasf/.config/broot/launcher/bash/br
