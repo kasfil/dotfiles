@@ -84,4 +84,23 @@ return {
 			opts.context_char = "│"
 		end,
 	},
+	{
+		"rcarriga/nvim-notify",
+		event = { "VimEnter" },
+		keys = {
+			{
+				"<leader>u0",
+				function()
+					require("notify").dismiss()
+				end,
+				desc = "Dissmiss notification",
+			},
+		},
+		opts = {
+			background_colour = "NotifyBackground",
+			render = "compact",
+			stages = "slide",
+			timeout = 2000,
+		},
+	},
 }
