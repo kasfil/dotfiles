@@ -4,6 +4,13 @@ return {
 		cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith", "ISwapNodeWithLeft", "ISwapNodeWithRight" },
 		opts = {},
 	},
+	{ "max397574/better-escape.nvim", enabled = false },
+	{
+		"mrjones2014/smart-splits.nvim",
+		opts = function(_, opts)
+			opts.multiplexer_integration = "wezterm"
+		end,
+	},
 	{
 		"ray-x/lsp_signature.nvim",
 		lazy = false,
