@@ -6,6 +6,11 @@ return {
 	},
 	{ "max397574/better-escape.nvim", enabled = false },
 	{
+		"tenxsoydev/karen-yank.nvim",
+		event = { "VimEnter" },
+		config = true,
+	},
+	{
 		"mrjones2014/smart-splits.nvim",
 		opts = function(_, opts)
 			opts.multiplexer_integration = "wezterm"
