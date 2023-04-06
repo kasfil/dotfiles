@@ -1,4 +1,4 @@
 return {
-	"pyright",
-	"gopls",
+  "pyright",
+  "gopls",
 }
