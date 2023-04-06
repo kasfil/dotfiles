@@ -57,20 +57,25 @@ return {
 
 	font = wezterm.font_with_fallback({
 		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" } },
-		{ family = "Symbols Nerd Fonts" },
-		{ family = "Hack Nerd Font" },
+		{ family = "Symbols Nerd Fonts", scale = 0.9 },
+		{ family = "Hack Nerd Font", scale = 0.9 },
 	}),
 
 	font_size = 10.7,
+	line_height = 1.2,
 
-	window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+	window_padding = { left = "1cell", right = "1cell", top = "6px", bottom = 0 },
 
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = true,
 
 	window_decorations = "NONE",
-	debug_key_events = true,
+	initial_rows = 32,
+	initial_cols = 150,
+
+	use_cap_height_to_scale_fallback_fonts = true,
+	audible_bell = "Disabled",
 
 	keys = {
 		-- move between split panes
