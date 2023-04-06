@@ -1,12 +1,12 @@
 return {
-	ActiveLSP = "⧳",
+	ActiveLSP = "☵ ",
 	ActiveTS = "綠",
 	BufferClose = "",
 	DapBreakpoint = "",
 	DapBreakpointCondition = "",
 	DapBreakpointRejected = "",
-	DapLogPoint = ".>",
-	DapStopped = "",
+	DapLogPoint = "",
+	DapStopped = "",
 	DefaultFile = "",
 	Diagnostic = "裂",
 	DiagnosticError = "",
@@ -40,7 +40,7 @@ return {
 	Search = "",
 	Selected = "❯",
 	Spellcheck = "暈",
-	Codeium = " ",
+	Codeium = "",
 
 	-- LSP symbol
 	Array = "",
