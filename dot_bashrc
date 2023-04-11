@@ -59,3 +59,4 @@ eval "$(register-python-argcomplete pipx)"
 
 
 source /home/kasf/.config/broot/launcher/bash/br
+. "$HOME/.cargo/env"
