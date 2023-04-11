@@ -1,4 +1,4 @@
-return {
+local options = {
   opt = {
     -- set to true or false etc.
     relativenumber = true, -- sets vim.opt.relativenumber
@@ -45,3 +45,11 @@ return {
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
   },
 }
+
+if vim.g.neovide then
+  options.opt.guifont = "JetBrains Mono Slashed,Symbols Nerd Fonts,Hack Nerd Font:h11"
+  options.g.neovide_hide_mouse_when_typing = true
+  options.opt.linespace = 0
+end
+
+return options
