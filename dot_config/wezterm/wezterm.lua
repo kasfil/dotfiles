@@ -77,6 +77,9 @@ return {
 	use_cap_height_to_scale_fallback_fonts = true,
 	audible_bell = "Disabled",
 
+	-- disable window close confirmation
+	window_close_confirmation = "NeverPrompt",
+
 	keys = {
 		-- move between split panes
 		split_nav("move", "h"),
