@@ -34,6 +34,7 @@ return {
 
     return {
       flavour = "macchiato",
+      no_italic = true,
       dim_inactive = {
         enabled = true,
         shade = "dark",
