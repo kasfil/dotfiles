@@ -56,12 +56,12 @@ return {
 	default_prog = { "/bin/bash" },
 
 	font = wezterm.font_with_fallback({
-		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" } },
-		{ family = "Symbols Nerd Fonts", scale = 0.9 },
-		{ family = "Hack Nerd Font", scale = 0.9 },
+		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" }, scale = 1.05 },
+		{ family = "Symbols Nerd Fonts" },
+		{ family = "Hack Nerd Font" },
 	}),
 
-	font_size = 10.7,
+	font_size = 10,
 	line_height = 1.2,
 
 	window_padding = { left = "1cell", right = "1cell", top = "6px", bottom = 0 },
