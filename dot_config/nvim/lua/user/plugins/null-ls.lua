@@ -58,6 +58,8 @@ return {
       b.formatting.black.with {
         cwd = function(params) return vim.fn.fnamemodify(params.bufname, ":h") end,
       },
+      b.diagnostics.ruff,
+      b.formatting.ruff,
       -- go
       b.formatting.goimports,
       revive,
