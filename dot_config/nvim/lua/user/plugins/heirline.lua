@@ -63,7 +63,24 @@ return {
       -- },
       status.component.lsp(),
       status.component.treesitter(),
-      status.component.nav(),
+      status.component.builder {
+        {
+          provider = function()
+            local indent_type = vim.bo.expandtab and "Space" or "Tab"
+            local indent_size = vim.bo.shiftwidth
+            return " " .. indent_type .. ": " .. indent_size .. " "
+          end,
+        },
+        padding = { left = 1 },
+        hl = { fg = p.yellow },
+        surround = { separator = "right" },
+      },
+      status.component.nav {
+        percentage = { padding = { right = 0 } },
+        ruler = { padding = { left = 0 } },
+        scrollbar = false,
+        surround = { separator = "none" },
+      },
       status.component.mode { surround = { separator = "right" } },
     }
   end,
