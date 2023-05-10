@@ -4,6 +4,11 @@ return {
     cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith", "ISwapNodeWithLeft", "ISwapNodeWithRight" },
     opts = {},
   },
+  {
+    "LhKipp/nvim-nu",
+    ft = { "nu" },
+    build = { ":TSInstall nu" },
+  },
   { "max397574/better-escape.nvim", enabled = false },
   {
     "tenxsoydev/karen-yank.nvim",
@@ -69,7 +74,7 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = { "InsertEnter" },
+    event = { "BufReadPost", "InsertEnter" },
     version = "*",
     config = function() require("nvim-surround").setup() end,
   },
