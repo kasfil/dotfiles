@@ -1,7 +1,7 @@
 -- official build with vim script
 local codeium = {
   "Exafunction/codeium.vim",
-  enabled = false,
+  name = "vimcodeium",
   event = { "VimEnter" },
   init = function()
     vim.g.codeium_no_map_tab = true
@@ -21,10 +21,12 @@ local nvim_codeium = {
   {
     "jcdickinson/http.nvim",
     build = "cargo build --workspace --release",
+    enabled = false,
   },
   {
     "jcdickinson/codeium.nvim",
     event = { "BufReadPre" },
+    enabled = false,
     dependencies = {
       "jcdickinson/http.nvim",
       "nvim-lua/plenary.nvim",
@@ -34,4 +36,4 @@ local nvim_codeium = {
   },
 }
 
-return nvim_codeium
+return codeium
