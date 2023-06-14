@@ -57,8 +57,8 @@ return {
 
 	font = wezterm.font_with_fallback({
 		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" }, scale = 1.05 },
-		{ family = "Symbols Nerd Fonts" },
-		{ family = "Hack Nerd Font" },
+		{ family = "Symbols Nerd Font" },
+		{ family = "JetBrainsMono Nerd Font" },
 	}),
 
 	font_size = 10,
