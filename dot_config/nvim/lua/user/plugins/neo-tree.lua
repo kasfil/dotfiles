@@ -3,6 +3,19 @@ return {
   opts = {
     popup_border_style = "single",
     enable_git_status = true,
+    sources = {
+      "filesystem",
+      "git_status",
+      "document_symbols",
+      "buffers",
+    },
+    source_selector = {
+      sources = {
+        { source = "filesystem", display_name = " 󰉓 Files " },
+        { source = "git_status", display_name = " 󰊢 Git " },
+        { source = "document_symbols", display_name = " 󱏒 Symbols " },
+      },
+    },
     filesystem = {
       filtered_items = {
         visible = false,
