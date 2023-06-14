@@ -5,6 +5,8 @@ return {
 
     opts.layout.win_opts = { winhl = "Normal:SideWin,NormalNC:SideWin" }
     opts.manage_folds = false
+    opts.link_folds_to_tree = false
+    opts.link_tree_to_folds = false
     opts.ignore = {
       unlisted_buffers = true,
       filetypes = {},
