@@ -23,3 +23,11 @@ aucmd("FileType", {
     vim.opt.softtabstop = 4
   end,
 })
+
+aucmd("WinLeave", {
+  callback = function()
+    if vim.bo.filetype == "TelescopePrompt" and vim.fn.mode() == "i" then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+    end
+  end,
+})
