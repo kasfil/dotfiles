@@ -17,7 +17,7 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
-    opts = function(_, opts) opts.multiplexer_integration = "wezterm" end,
+    cond = function() return not vim.g.neovide end,
   },
   {
     "ray-x/lsp_signature.nvim",

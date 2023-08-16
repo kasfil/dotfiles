@@ -3,7 +3,6 @@ return {
   opts = function(_, opts)
     local null_ls = require "null-ls"
     local helpers = require "null-ls.helpers"
-    local utils = require "null-ls.utils"
     local b = null_ls.builtins
 
     local revive = function()
@@ -44,25 +43,16 @@ return {
 
     opts.sources = {
       -- python
-      b.diagnostics.flake8.with {
-        cwd = helpers.cache.by_bufnr(
-          function(params)
-            return utils.root_pattern("pyproject.toml", ".flake8", "setup.cfg", "tox.ini")(params.bufname)
-          end
-        ),
-      },
-      b.diagnostics.mypy.with {
-        extra_args = { "--ignore-missing-import" },
-      },
       b.formatting.isort,
       b.formatting.black.with {
         cwd = function(params) return vim.fn.fnamemodify(params.bufname, ":h") end,
       },
       b.diagnostics.ruff,
-      -- b.formatting.ruff,
+
       -- go
       b.formatting.goimports,
       revive,
+
       -- json
       b.formatting.jq,
     }

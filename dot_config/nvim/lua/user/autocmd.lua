@@ -31,3 +31,25 @@ aucmd("WinLeave", {
     end
   end,
 })
+
+if vim.g.neovide then
+  local function set_ime(args)
+    if args.event:match "Enter$" then
+      vim.g.neovide_input_ime = true
+    else
+      vim.g.neovide_input_ime = false
+    end
+  end
+
+  local ime_input = augroup("ime_input", { clear = true })
+  aucmd({ "InsertEnter", "InsertLeave" }, {
+    group = ime_input,
+    pattern = "*",
+    callback = set_ime,
+  })
+  aucmd({ "CmdlineEnter", "CmdlineLeave" }, {
+    group = ime_input,
+    pattern = "[/\\?]",
+    callback = set_ime,
+  })
+end

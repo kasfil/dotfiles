@@ -12,7 +12,7 @@ return {
     opts.window = {
       documentation = {
         border = "single",
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Pmenu:NormalFloat",
+        winhighlight = "Normal:CmpDocsFloat,FloatBorder:CmpDocsFloatBorder,Pmenu:CmpDocsFloat",
         col_offset = 2,
       },
       completion = {

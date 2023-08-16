@@ -5,5 +5,5 @@ return {
     ignore_filetypes = {},
   },
   disabled = { "gopls", "lua_ls" },
-  timeout_ms = 2000,
+  timeout_ms = 30000,
 }

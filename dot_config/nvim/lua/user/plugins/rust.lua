@@ -3,6 +3,7 @@ local server_config = require("astronvim.utils.lsp").config
 return {
   {
     "simrat39/rust-tools.nvim",
+    dependencies = { "folke/neoconf.nvim" },
     ft = { "rust" },
     opts = {
       hover_actions = {

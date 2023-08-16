@@ -47,8 +47,13 @@ local options = {
 }
 
 if vim.g.neovide then
-  options.opt.guifont = "JetBrains Mono Slashed,Symbols Nerd Fonts,Hack Nerd Font:h11"
+  options.opt.guifont = "JetBrains Mono Freeze,Symbols Nerd Fonts,Noto Color Emoji:h11:#e-subpixelantialias:#h-none"
   options.g.neovide_hide_mouse_when_typing = true
+  options.opt.linespace = 0
+end
+
+if vim.g.goneovim then
+  options.opt.guifont = "JetBrains Mono Freeze,Symbols Nerd Fonts,Noto Color Emoji:h10"
   options.opt.linespace = 0
 end
 
