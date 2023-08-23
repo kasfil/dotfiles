@@ -63,12 +63,12 @@ return {
 	}),
 
 	font_size = 10,
-	line_height = 1.2,
+	line_height = 1.1,
 
 	window_padding = { left = "1cell", right = "1cell", top = "3px", bottom = "3px" },
 
 	use_fancy_tab_bar = false,
-	hide_tab_bar_if_only_one_tab = true,
+	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = true,
 
 	window_decorations = "NONE",
