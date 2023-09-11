@@ -52,6 +52,7 @@ eval "$(fnm env --use-on-cd)"
 eval "$(zoxide init bash)"
 eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
+eval "$(direnv hook bash)"
 
 
 source /home/kasf/.config/broot/launcher/bash/br
