@@ -53,7 +53,7 @@ if vim.g.neovide then
 end
 
 if vim.g.goneovim then
-  options.opt.guifont = "JetBrains Mono Freeze,Symbols Nerd Fonts,Noto Color Emoji:h10"
+  options.opt.guifont = "JetBrainsMonoFreeze Nerd Font,Symbols Nerd Fonts,Noto Color Emoji:h10"
   options.opt.linespace = 0
 end
 

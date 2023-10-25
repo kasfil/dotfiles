@@ -1,6 +1,6 @@
 return {
-  ActiveLSP = "☵ ",
-  ActiveTS = "綠",
+  ActiveLSP = "",
+  ActiveTS = "",
   BufferClose = "",
   DapBreakpoint = "",
   DapBreakpointCondition = "",
@@ -8,11 +8,11 @@ return {
   DapLogPoint = "",
   DapStopped = "",
   DefaultFile = "",
-  Diagnostic = "裂",
-  DiagnosticError = "",
+  Diagnostic = "",
+  DiagnosticError = "",
   DiagnosticHint = "",
-  DiagnosticInfo = "",
-  DiagnosticWarn = "",
+  DiagnosticInfo = "",
+  DiagnosticWarn = "",
   Ellipsis = "…",
   FileModified = "",
   FileReadOnly = "",
@@ -39,7 +39,7 @@ return {
   Paste = "",
   Search = "",
   Selected = "❯",
-  Spellcheck = "暈",
+  Spellcheck = " ",
   Codeium = "",
 
   -- LSP symbol

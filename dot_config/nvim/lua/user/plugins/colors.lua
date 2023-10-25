@@ -204,4 +204,7 @@ return {
       }
     end,
   },
+  {
+    "neanias/everforest-nvim",
+  },
 }

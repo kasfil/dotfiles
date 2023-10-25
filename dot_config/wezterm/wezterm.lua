@@ -6,7 +6,7 @@ end
 
 local function is_vim(pane)
 	local process_name = basename(pane:get_foreground_process_name())
-	return process_name == "vim" or process_name == "nvim"
+	return process_name == "vim" or process_name == "nvim" or string.find(process_name, "python")
 end
 
 local direction_keys = {
@@ -57,7 +57,7 @@ return {
 	default_prog = { "/bin/bash" },
 
 	font = wezterm.font_with_fallback({
-		{ family = "JetBrains Mono Freeze" },
+		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" } },
 		{ family = "Symbols Nerd Font" },
 		{ family = "JetBrainsMono Nerd Font" },
 	}),
@@ -68,7 +68,7 @@ return {
 	window_padding = { left = "1cell", right = "1cell", top = "3px", bottom = "3px" },
 
 	use_fancy_tab_bar = false,
-	hide_tab_bar_if_only_one_tab = false,
+	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = true,
 
 	window_decorations = "NONE",

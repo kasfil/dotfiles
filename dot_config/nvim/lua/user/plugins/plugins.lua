@@ -5,6 +5,13 @@ return {
     opts = {},
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      indent = { char = "▎" },
+      scope = { highlight = { "IndentBlanklineContextChar" } },
+    },
+  },
+  {
     "LhKipp/nvim-nu",
     ft = { "nu" },
     build = { ":TSInstall nu" },
@@ -83,13 +90,6 @@ return {
     lazy = false,
     event = "BufReadPost",
     config = function() require("leap").add_default_mappings() end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = function(_, opts)
-      opts.char = "│"
-      opts.context_char = "│"
-    end,
   },
   {
     "rcarriga/nvim-notify",
