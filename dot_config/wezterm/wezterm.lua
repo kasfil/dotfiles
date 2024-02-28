@@ -57,23 +57,27 @@ return {
 	default_prog = { "/bin/bash" },
 
 	font = wezterm.font_with_fallback({
-		{ family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1" } },
+		-- { family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1", "calt=0" } },
+		{ family = "Intel One Mono" },
+		{ family = "JetBrains Mono Freeze" },
 		{ family = "Symbols Nerd Font" },
-		{ family = "JetBrainsMono Nerd Font" },
+		{ family = "Noto Color Emoji" },
 	}),
 
-	font_size = 10,
+	font_size = 11,
 	line_height = 1.1,
 
-	window_padding = { left = "1cell", right = "1cell", top = "3px", bottom = "3px" },
+	-- dpi = 90,
+
+	window_padding = { left = "1cell", right = "1cell", top = 0, bottom = 0 },
 
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = true,
 
 	window_decorations = "NONE",
-	initial_rows = 32,
-	initial_cols = 150,
+	initial_rows = 35,
+	initial_cols = 130,
 
 	use_cap_height_to_scale_fallback_fonts = true,
 	audible_bell = "Disabled",
