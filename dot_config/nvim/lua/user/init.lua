@@ -16,7 +16,10 @@ local config = {
     underline = true,
   },
   plugins = {},
-  polish = function() require "user.autocmd" end,
+  polish = function()
+    require "user.autocmd"
+    require "user.commands"
+  end,
 }
 
 return config
