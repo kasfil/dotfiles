@@ -40,7 +40,7 @@ return {
   Search = "",
   Selected = "❯",
   Spellcheck = " ",
-  Codeium = "",
+  Codeium = "󰼁",
 
   -- LSP symbol
   Array = "",

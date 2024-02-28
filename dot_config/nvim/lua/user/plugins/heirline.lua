@@ -50,14 +50,14 @@ return {
       status.component.file_info { filetype = {}, filename = false, file_modified = false },
       status.component.git_diff(),
       status.component.diagnostics(),
-      {
-        provider = function()
-          local codeium_status = vim.api.nvim_call_function("codeium#GetStatusString", {})
-          return " Codeium: " .. codeium_status .. " "
-        end,
-        hl = { fg = p.blue },
-        surround = status.utils.surround { " ", " " },
-      },
+      -- {
+      --   provider = function()
+      --     local codeium_status = vim.api.nvim_call_function("codeium#GetStatusString", {})
+      --     return " Codeium: " .. codeium_status .. " "
+      --   end,
+      --   hl = { fg = p.blue },
+      --   surround = status.utils.surround { " ", " " },
+      -- },
       status.component.fill(),
       status.component.cmd_info(),
       status.component.fill(),

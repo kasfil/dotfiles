@@ -19,16 +19,9 @@ local codeium = {
 -- Community plugins build with lua
 local nvim_codeium = {
   {
-    "jcdickinson/http.nvim",
-    build = "cargo build --workspace --release",
-    enabled = false,
-  },
-  {
-    "jcdickinson/codeium.nvim",
-    event = { "BufReadPre" },
-    enabled = false,
+    "Exafunction/codeium.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      "jcdickinson/http.nvim",
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
     },
@@ -36,4 +29,4 @@ local nvim_codeium = {
   },
 }
 
-return codeium
+return nvim_codeium
