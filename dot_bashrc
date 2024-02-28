@@ -1,4 +1,5 @@
 # .bashrc
+# vim: ft=sh
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -28,9 +29,6 @@ unset rc
 
 HISTIGNORE="$HISTIGNORE:jrnl *:nvim*:z:z *:source *:cd *:code*:codium*:docker-compose *:poetry*:ls *"
 
-# allow run podman with docker-compose
-export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
-
 source $HOME/.bash_scripts/nnn.sh
 source $HOME/.bash_scripts/drone_repo.sh
 source $HOME/.bash_scripts/system.sh
@@ -43,36 +41,17 @@ export PATH="/home/kasf/.local/share/bob/nvim-bin:$PATH"
 export PATH="/home/kasf/.local/share/fnm:$PATH"
 export PATH="$PATH:/home/kasf/.local/bin"
 
-# virtual env-wrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/pydev
-source $HOME/.local/bin/virtualenvwrapper_lazy.sh
+export GOPATH="$HOME/.gobrew/current/go"
 
 eval "$(starship init bash)"
-eval "$(fnm env --use-on-cd)"
 eval "$(zoxide init bash)"
 eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
 eval "$(direnv hook bash)"
-
+eval "$(bob complete bash)"
+source /usr/share/nvm/init-nvm.sh
 
 source /home/kasf/.config/broot/launcher/bash/br
-. "$HOME/.cargo/env"
 
-
-# User specific environment and startup programs
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-if type brew &>/dev/null
-then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
-  then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-    do
-      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
-    done
-  fi
-fi
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
