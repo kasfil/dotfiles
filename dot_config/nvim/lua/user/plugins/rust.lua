@@ -1,20 +1,27 @@
-local server_config = require("astronvim.utils.lsp").config
-
 return {
   {
-    "simrat39/rust-tools.nvim",
-    dependencies = { "folke/neoconf.nvim" },
+    "mrcjkb/rustaceanvim",
+    dependencies = { "mfussenegger/nvim-dap", "jay-babu/mason-nvim-dap.nvim" },
     ft = { "rust" },
-    opts = {
-      server = server_config "rust_analyzer",
-      tools = {
-        inlay_hints = { auto = false },
-        hover_actions = {
-          max_width = 120,
-          max_height = 35,
+    version = "*",
+    init = function()
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = require("astronvim.utils.lsp").on_attach,
         },
-      },
-    },
+        dap = {
+          adapter = {
+            type = "server",
+            host = "127.0.0.1",
+            port = "${port}",
+            executable = {
+              command = "codelldb",
+              args = { "--port", "${port}" },
+            },
+          },
+        },
+      }
+    end,
   },
   {
     "saecki/crates.nvim",
