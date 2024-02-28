@@ -1,0 +1,6 @@
+[git_status]
+conflicted = "="
+ahead = "▲"
+behind = "▼"
+diverged = "⯁"
+deleted = "×"
