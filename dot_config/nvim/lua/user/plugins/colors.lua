@@ -50,9 +50,6 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = function(_, _)
-      local p = require("catppuccin.palettes").get_palette "macchiato"
-      local u = require "catppuccin.utils.colors"
-
       -- rosewater = "#F4DBD6",
       -- flamingo = "#F0C6C6",
       -- pink = "#F5BDE6",
@@ -79,6 +76,9 @@ return {
       -- base = "#24273A",
       -- mantle = "#1E2030",
       -- crust = "#181926",
+
+      local p = require("catppuccin.palettes").get_palette "macchiato"
+      local u = require "catppuccin.utils.colors"
 
       return {
         flavour = "macchiato",
@@ -203,8 +203,5 @@ return {
         },
       }
     end,
-  },
-  {
-    "neanias/everforest-nvim",
   },
 }
