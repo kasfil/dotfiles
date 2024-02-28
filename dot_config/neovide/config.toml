@@ -1,0 +1,9 @@
+frame = "none"
+maximized = true
+
+[font]
+normal = [{ family = "JetBrains Mono", style = "Light" }, "Symbols Nerd Font", "JetBrainsMono Nerd Font", "Noto Color Emoji"]
+size = 15
+
+[font.features]
+"JetBrains Mono" = ["+zero", "+cv06", "-calt"]
