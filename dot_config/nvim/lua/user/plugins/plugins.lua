@@ -6,10 +6,12 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      indent = { char = "▎" },
-      scope = { highlight = { "IndentBlanklineContextChar" } },
-    },
+    main = "ibl",
+    opts = function(_, opts)
+      opts.indent.char = "┃"
+      opts.indent.tab_char = "┃"
+      opts.scope.highlight = { "IndentBlanklineContextChar" }
+    end,
   },
   {
     "LhKipp/nvim-nu",
@@ -107,5 +109,9 @@ return {
       stages = "slide",
       timeout = 2000,
     },
+  },
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
   },
 }
