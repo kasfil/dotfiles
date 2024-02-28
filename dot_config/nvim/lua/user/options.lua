@@ -8,6 +8,8 @@ local options = {
     wrap = false, -- sets vim.opt.wrap
     updatetime = 250,
     list = true,
+    scrolloff = 7,
+    sidescrolloff = 10,
     listchars = {
       tab = "»·",
       nbsp = "+",
@@ -47,14 +49,9 @@ local options = {
 }
 
 if vim.g.neovide then
-  options.opt.guifont = "JetBrains Mono Freeze,Symbols Nerd Fonts,Noto Color Emoji:h11:#e-subpixelantialias:#h-none"
   options.g.neovide_hide_mouse_when_typing = true
-  options.opt.linespace = 0
-end
-
-if vim.g.goneovim then
-  options.opt.guifont = "JetBrainsMonoFreeze Nerd Font,Symbols Nerd Fonts,Noto Color Emoji:h10"
-  options.opt.linespace = 0
+  options.g.neovide_cursor_animation_length = 0.1
+  options.g.neovide_cursor_trail_size = 0.5
 end
 
 return options
