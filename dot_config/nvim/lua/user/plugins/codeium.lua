@@ -4,6 +4,7 @@ local codeium = {
   name = "vimcodeium",
   event = { "VimEnter" },
   init = function()
+    vim.g.codeium_manual = true
     vim.g.codeium_no_map_tab = true
     vim.g.codeium_filetypes = {
       ["neo-tree-popup"] = false,
@@ -29,4 +30,4 @@ local nvim_codeium = {
   },
 }
 
-return nvim_codeium
+return codeium

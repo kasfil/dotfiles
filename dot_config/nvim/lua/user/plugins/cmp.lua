@@ -53,14 +53,14 @@ return {
       { name = "crates", priority = 550 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
-      { name = "codeium", priority = 50 },
+      -- { name = "codeium", priority = 50 },
     }
 
     opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-      -- elseif vim.fn["has_key"](vim.api.nvim_buf_get_var(0, "_codeium_completions"), "index") then
-      --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(codeium-accept)", true, true, true), "i", true)
+      elseif vim.fn["has_key"](vim.api.nvim_buf_get_var(0, "_codeium_completions"), "index") then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(codeium-accept)", true, true, true), "i", true)
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -81,5 +81,12 @@ return {
     end, { "i", "s" })
 
     return opts
+  end,
+  config = function(_, opts)
+    local cmp = require "cmp"
+    cmp.setup(opts)
+
+    cmp.event:on("menu_opened", function() vim.fn["codeium#Clear"]() end)
+    cmp.event:on("menu_closed", function() vim.fn["codeium#Complete"]() end)
   end,
 }

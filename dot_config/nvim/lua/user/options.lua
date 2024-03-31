@@ -49,9 +49,17 @@ local options = {
 }
 
 if vim.g.neovide then
-  options.g.neovide_hide_mouse_when_typing = true
-  options.g.neovide_cursor_animation_length = 0.1
-  options.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_cursor_smooth_blink = true
+  vim.g.neovide_remember_window_position = true
+
+  vim.opt.guicursor = {
+    "n-v-c:block-Cursor/lCursor-blinkwait300-blinkon750-blinkoff750",
+    "i-ci:ver25-Cursor/lCursor-blinkwait300-blinkon750-blinkoff750",
+    "r:hor50-Cursor/lCursor-blinkwait300-blinkon750-blinkoff750",
+  }
 end
 
 return options

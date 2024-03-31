@@ -26,6 +26,7 @@ return {
   },
   {
     "mrjones2014/smart-splits.nvim",
+    event = { "VimEnter" },
     cond = function() return not vim.g.neovide end,
   },
   {

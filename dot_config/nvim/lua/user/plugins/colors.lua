@@ -162,6 +162,11 @@ return {
           NotifyTRACETitle = { link = "NotifyTRACEBody" },
 
           AlphaHeader = { bg = p.blue, fg = p.base },
+
+          WindowPickerWinBar = { bg = p.green, fg = p.base },
+          WindowPickerWinBarNC = { bg = p.blue, fg = p.base },
+          WindowPickerStatusLine = { link = "WindowPickerWinBar" },
+          WindowPickerStatusLineNC = { link = "WindowPickerWinBarNC" },
         },
         styles = {
           comments = { "italic" },

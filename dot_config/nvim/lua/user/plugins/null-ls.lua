@@ -5,7 +5,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim" },
     opts = function(_, opts)
       local null_ls = require "null-ls"
       local helpers = require "null-ls.helpers"
@@ -53,20 +53,20 @@ return {
         b.formatting.black.with {
           cwd = function(params) return vim.fn.fnamemodify(params.bufname, ":h") end,
         },
-        b.diagnostics.ruff,
+        require("none-ls.diagnostics.ruff"),
 
         -- go
         b.formatting.goimports,
         revive,
 
         -- json
-        b.formatting.jq,
+        require("none-ls.formatting.jq"),
 
         -- lua
         b.formatting.stylua,
 
         -- rust
-        b.formatting.rustfmt,
+        require("none-ls.formatting.rustfmt"),
       }
 
       opts.on_attach = require("astronvim.utils.lsp").on_attach
