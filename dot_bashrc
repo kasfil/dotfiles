@@ -36,15 +36,14 @@ source $HOME/.bash_scripts/wdr.sh
 
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
 export PATH="/home/kasf/.local/share/bob/nvim-bin:$PATH"
 export PATH="/home/kasf/.local/share/fnm:$PATH"
 export PATH="$PATH:/home/kasf/.local/bin"
 
-export GOPATH="$HOME/.gobrew/current/go"
+export GOROOT="$HOME/.gobrew/current/go"
 
 eval "$(starship init bash)"
-eval "$(zoxide init bash)"
+eval "$(zoxide init bash --cmd j --hook pwd)"
 eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
 eval "$(direnv hook bash)"
