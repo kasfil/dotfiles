@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local action = wezterm.action
 
 local function basename(s)
 	return string.gsub(s, "(.*[/\\])(.*)", "%2")
@@ -50,6 +51,14 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+local function bind_keys(key, mods, event)
+	return { key = key, mods = mods, action = event }
+end
+
+local function unbind_keys(key, mod)
+	return bind_keys(key, mod, action.SendKey({ key = key, mods = mod }))
+end
+
 return {
 	-- color_scheme = "Everblush",
 	color_scheme = "Catppuccin Macchiato",
@@ -64,8 +73,8 @@ return {
 		{ family = "Noto Color Emoji" },
 	}),
 
-	font_size = 11,
-	line_height = 1.1,
+	font_size = 12,
+	-- line_height = 1.2,
 
 	-- dpi = 90,
 
@@ -85,6 +94,8 @@ return {
 	-- disable window close confirmation
 	window_close_confirmation = "NeverPrompt",
 
+	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+
 	keys = {
 		-- move between split panes
 		split_nav("move", "h"),
@@ -97,5 +108,18 @@ return {
 		split_nav("resize", "Down"),
 		split_nav("resize", "Up"),
 		split_nav("resize", "Right"),
+
+		bind_keys("w", "LEADER", action.CloseCurrentPane({ confirm = true })),
+		bind_keys("w", "LEADER|SHIFT", action.CloseCurrentTab({ confirm = true })),
+		bind_keys("z", "LEADER", action.TogglePaneZoomState),
+		bind_keys('"', "LEADER|SHIFT", action.SplitVertical({ domain = "CurrentPaneDomain" })),
+		bind_keys("%", "LEADER|SHIFT", action.SplitHorizontal({ domain = "CurrentPaneDomain" })),
+		bind_keys("T", "LEADER|SHIFT", action.SpawnTab("CurrentPaneDomain")),
+
+		unbind_keys("z", "CTRL|SHIFT"),
+		unbind_keys('"', "CTRL|SHIFT|ALT"),
+		unbind_keys("%", "CTRL|SHIFT|ALT"),
+		unbind_keys("t", "CTRL|SHIFT"),
+		unbind_keys("w", "CTRL|SHIFT"),
 	},
 }
