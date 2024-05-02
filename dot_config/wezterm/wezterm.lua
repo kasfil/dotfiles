@@ -60,14 +60,16 @@ local function unbind_keys(key, mod)
 end
 
 return {
-	-- color_scheme = "Everblush",
-	color_scheme = "Catppuccin Macchiato",
+	color_scheme = "OneDark (base16)",
+	-- color_scheme = "Catppuccin Macchiato",
 	enable_wayland = false,
 	default_prog = { "/bin/bash" },
 
 	font = wezterm.font_with_fallback({
 		-- { family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1", "calt=0" } },
-		{ family = "Intel One Mono" },
+		-- { family = "Cascadia Code PL", harfbuzz_features = { "zero=1", "ss01=1", "calt=0" } },
+		{ family = "I One Cadia" },
+		-- { family = "Intel One Mono" },
 		{ family = "JetBrains Mono Freeze" },
 		{ family = "Symbols Nerd Font" },
 		{ family = "Noto Color Emoji" },
@@ -78,7 +80,7 @@ return {
 
 	-- dpi = 90,
 
-	window_padding = { left = "1cell", right = "1cell", top = 0, bottom = 0 },
+	-- window_padding = { left = "1cell", right = "1cell", top = 0, bottom = 0 },
 
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
