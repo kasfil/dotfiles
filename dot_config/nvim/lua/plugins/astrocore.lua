@@ -13,13 +13,7 @@ local opts = { -- Configure core features of AstroNvim
     virtual_text = {
       severity = vim.diagnostic.severity.WARN,
       spacing = 2,
-      prefix = function(_, i, total)
-        if total == 1 then
-          return "󰁎"
-        else
-          return "󰁎 " .. i .. "/" .. total
-        end
-      end,
+      prefix = "󰁎 ",
     },
     underline = true,
   },
@@ -40,9 +34,9 @@ local opts = { -- Configure core features of AstroNvim
         tab = "»·",
         nbsp = "+",
         trail = "·",
-        extends = "→",
-        precedes = "←",
-        eol = "↙",
+        extends = "🡆",
+        precedes = "🡄",
+        eol = "⮧",
       },
       fillchars = {
         eob = " ",

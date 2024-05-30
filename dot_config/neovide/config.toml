@@ -2,15 +2,18 @@ frame = "none"
 maximized = true
 
 [font]
-normal = ["I One Cadia", {family = "Intel One Mono", style = "Regular"}, { family = "JetBrains Mono" }, "Symbols Nerd Font", "Noto Color Emoji"]
-bold = ["I One Cadia", {family = "Intel One Mono", style = "Medium" }, { family = "JetBrains Mono" }, "Symbols Nerd Font", "Noto Color Emoji"]
-italic = ["I One Cadia", { family = "Cascadia Code NF", style = "Light Italic" }, "Symbols Nerd Font", "Noto Color Emoji"]
-bold_italic = ["I One Cadia", { family = "Cascadia Code NF", style = "Bold Italic" }, "Symbols Nerd Font", "Noto Color Emoji"]
+normal = [
+    { family = "Iosevkasf" },
+    { family = "JetBrains Mono" },
+    { family = "Intel One Mono", style = "Regular" },
+    "Symbols Nerd Font",
+    "Noto Color Emoji",
+]
+
 edging = "antialias"
 hinting = "full"
 allow_float_size = true
-size = 15.7
+size = 12
 
 [font.features]
-"JetBrains Mono" = ["+zero", "+cv06", "-calt"]
-"Cascadia Code NF" = ["+zero", "+ss01", "-calt"]
+"JetBrains Mono" = ["+zero", "+cv06", "+cv07", "+ss19", "+ss16"]

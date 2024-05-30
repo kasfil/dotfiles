@@ -43,9 +43,13 @@ return {
       status.component.mode(),
       status.component.git_branch(),
       status.component.builder {
-        provider = function() return " " .. gstatus.ahead .. "↑ " .. gstatus.behind .. "↓ " end,
+        provider = function() return gstatus.ahead .. "↑ " .. gstatus.behind .. "↓ " end,
         surround = { condition = status.condition.is_git_repo, separator = "None" },
-        hl = get_hl "StatusGitRemote",
+        hl = function()
+          if tonumber(gstatus.ahead) > 0 or tonumber(gstatus.behind) > 0 then return get_hl "StatusGitRemoteUnsync" end
+
+          return get_hl "StatusGitRemoteSync"
+        end,
       },
       status.component.file_info {
         filetype = false,
@@ -64,19 +68,22 @@ return {
       --   end,
       --   hl = { fg = p.blue },
       -- },
-      status.component.treesitter(),
-      status.component.lsp { lsp_progress = false, padding = { left = 1, right = 1 } },
+      -- status.component.treesitter(),
+      -- status.component.lsp {
+      --   -- lsp_progress = true,
+      --   padding = { left = 1, right = 1 },
+      -- },
       status.component.builder {
         {
           provider = function()
             local indent_type = vim.bo.expandtab and "Space" or "Tab"
             local indent_size = vim.bo.shiftwidth
-            return " " .. indent_type .. ": " .. indent_size .. " "
+            return indent_type .. ": " .. indent_size .. " "
           end,
         },
         padding = { left = 1 },
         hl = get_hl "StatusTabSize",
-        surround = { separator = "right" },
+        -- surround = { separator = "right" },
       },
       status.component.nav { scrollbar = false, percentage = false },
       status.component.mode { surround = { separator = "right" } },

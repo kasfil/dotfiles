@@ -181,4 +181,10 @@ return {
       end
     end,
   },
+
+  {
+    "ray-x/go.nvim",
+    version = false,
+    branch = "master",
+  },
 }

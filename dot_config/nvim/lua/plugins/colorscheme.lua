@@ -40,8 +40,14 @@ return {
           IndentBlanklineChar = { fg = helper.lighten("bg", 1, "onedark") },
           IndentBlanklineContextChar = { fg = helper.lighten("bg", 20, "onedark") },
 
-          StatusTabSize = { fg = colors.bg, bg = colors.yellow, bold = true },
-          StatusGitRemote = { fg = colors.bg, bg = colors.blue },
+          DiagnosticUnderlineError = { fg = "none", sp = colors.red, undercurl = true },
+          DiagnosticUnderlineWarn = { fg = "none", sp = colors.yellow, undercurl = true },
+          DiagnosticUnderlineInfo = { fg = "none", sp = colors.blue, undercurl = true },
+          DiagnosticUnderlineHint = { fg = "none", sp = colors.cyan, undercurl = true },
+
+          StatusTabSize = { fg = colors.yellow },
+          StatusGitRemoteUnsync = { fg = colors.yellow },
+          StatusGitRemoteSync = { fg = colors.green },
           BufferPathActive = { fg = colors.green },
 
           WinSeparator = { bg = colors.bg, fg = "${dark_bg}" },

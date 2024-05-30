@@ -66,21 +66,22 @@ return {
 	default_prog = { "/bin/bash" },
 
 	font = wezterm.font_with_fallback({
-		-- { family = "JetBrains Mono", harfbuzz_features = { "zero=1", "cv06=1", "calt=0" } },
-		-- { family = "Cascadia Code PL", harfbuzz_features = { "zero=1", "ss01=1", "calt=0" } },
-		{ family = "I One Cadia" },
-		-- { family = "Intel One Mono" },
-		{ family = "JetBrains Mono Freeze" },
+		{ family = "Iosevkasf" },
+		{
+			family = "JetBrains Mono",
+			harfbuzz_features = { "zero=1", "cv06=1", "cv07=1", "ss19=1", "cv16=1" },
+		},
+		{ family = "Intel One Mono" },
 		{ family = "Symbols Nerd Font" },
 		{ family = "Noto Color Emoji" },
 	}),
 
-	font_size = 12,
+	font_size = 13,
 	-- line_height = 1.2,
 
-	-- dpi = 90,
+	dpi = 96,
 
-	-- window_padding = { left = "1cell", right = "1cell", top = 0, bottom = 0 },
+	window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
 
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
@@ -88,7 +89,7 @@ return {
 
 	window_decorations = "NONE",
 	initial_rows = 35,
-	initial_cols = 130,
+	initial_cols = 115,
 
 	use_cap_height_to_scale_fallback_fonts = true,
 	audible_bell = "Disabled",
@@ -96,7 +97,7 @@ return {
 	-- disable window close confirmation
 	window_close_confirmation = "NeverPrompt",
 
-	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+	-- leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 
 	keys = {
 		-- move between split panes
@@ -111,17 +112,17 @@ return {
 		split_nav("resize", "Up"),
 		split_nav("resize", "Right"),
 
-		bind_keys("w", "LEADER", action.CloseCurrentPane({ confirm = true })),
-		bind_keys("w", "LEADER|SHIFT", action.CloseCurrentTab({ confirm = true })),
-		bind_keys("z", "LEADER", action.TogglePaneZoomState),
-		bind_keys('"', "LEADER|SHIFT", action.SplitVertical({ domain = "CurrentPaneDomain" })),
-		bind_keys("%", "LEADER|SHIFT", action.SplitHorizontal({ domain = "CurrentPaneDomain" })),
-		bind_keys("T", "LEADER|SHIFT", action.SpawnTab("CurrentPaneDomain")),
+		-- bind_keys("w", "LEADER", action.CloseCurrentPane({ confirm = true })),
+		-- bind_keys("w", "LEADER|SHIFT", action.CloseCurrentTab({ confirm = true })),
+		-- bind_keys("z", "LEADER", action.TogglePaneZoomState),
+		-- bind_keys('"', "LEADER|SHIFT", action.SplitVertical({ domain = "CurrentPaneDomain" })),
+		-- bind_keys("%", "LEADER|SHIFT", action.SplitHorizontal({ domain = "CurrentPaneDomain" })),
+		-- bind_keys("T", "LEADER|SHIFT", action.SpawnTab("CurrentPaneDomain")),
 
-		unbind_keys("z", "CTRL|SHIFT"),
-		unbind_keys('"', "CTRL|SHIFT|ALT"),
-		unbind_keys("%", "CTRL|SHIFT|ALT"),
-		unbind_keys("t", "CTRL|SHIFT"),
-		unbind_keys("w", "CTRL|SHIFT"),
+		-- unbind_keys("z", "CTRL|SHIFT"),
+		-- unbind_keys('"', "CTRL|SHIFT|ALT"),
+		-- unbind_keys("%", "CTRL|SHIFT|ALT"),
+		-- unbind_keys("t", "CTRL|SHIFT"),
+		-- unbind_keys("w", "CTRL|SHIFT"),
 	},
 }

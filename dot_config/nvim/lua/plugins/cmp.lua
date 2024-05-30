@@ -18,7 +18,7 @@ return {
         -- col_offset = 2,
       },
       completion = {
-        border = "none",
+        border = "single",
         -- winhighlight = "Normal:NormalFloat,FloatBorder:CmpFloatBorder,Pmenu:NormalFloat",
         -- col_offset = -1,
         side_padding = 1,
