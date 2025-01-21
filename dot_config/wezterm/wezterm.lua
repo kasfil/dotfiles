@@ -1,128 +1,97 @@
 local wezterm = require("wezterm")
 local action = wezterm.action
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
-local function basename(s)
-	return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
+local config = {
+  enable_wayland = false,
+  default_prog = { "/bin/bash" },
 
-local function is_vim(pane)
-	local process_name = basename(pane:get_foreground_process_name())
-	return process_name == "vim" or process_name == "nvim" or string.find(process_name, "python")
-end
+  font = wezterm.font_with_fallback({
+    { family = "IntoneMono NFP" },
+    -- { family = "0xProto", harfbuzz_features = { "ss01=1", "calt=0", "dlig=0", "liga=0" } },
+    -- { family = "JetBrains Mono", harfbuzz_features = { "ss19=1", "zero=1", "cv06=1", "cv07=1" } },
+    { family = "Symbols Nerd Font" },
+    -- { family = "OpenMoji", assume_emoji_presentation = true },
+    { family = "Noto Color Emoji", assume_emoji_presentation = true },
+  }),
 
-local direction_keys = {
-	Left = "h",
-	Down = "j",
-	Up = "k",
-	Right = "l",
+  font_size = 12,
+  -- line_height = 1.1,
 
-	-- reverse lookup
-	h = "Left",
-	j = "Down",
-	k = "Up",
-	l = "Right",
+  unicode_version = 14,
+
+  dpi = 96,
+
+  window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+
+  use_fancy_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
+  tab_bar_at_bottom = true,
+
+  window_decorations = "NONE",
+  initial_rows = 35,
+  initial_cols = 115,
+
+  use_cap_height_to_scale_fallback_fonts = false,
+  audible_bell = "Disabled",
+
+  -- disable window close confirmation
+  window_close_confirmation = "NeverPrompt",
+
+  color_scheme = "gruvbox_material_dark_hard",
+  color_schemes = {
+    ["gruvbox_material_dark_hard"] = {
+      foreground = "#D4BE98",
+      background = "#1D2021",
+      cursor_bg = "#D4BE98",
+      cursor_border = "#D4BE98",
+      cursor_fg = "#1D2021",
+      selection_bg = "#D4BE98",
+      selection_fg = "#3C3836",
+
+      ansi = { "#1d2021", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98" },
+      brights = { "#eddeb5", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98" },
+    },
+  },
+
+  leader = { key = "/", mods = "CTRL", timeout_milliseconds = 1000 },
+
+  keys = {
+    {
+      key = "z",
+      mods = "LEADER",
+      action = action.TogglePaneZoomState,
+    },
+    {
+      key = "w",
+      mods = "LEADER",
+      action = action.CloseCurrentPane({ confirm = true }),
+    },
+    {
+      key = "W",
+      mods = "LEADER|SHIFT",
+      action = action.CloseCurrentTab({ confirm = true }),
+    },
+    {
+      key = "-",
+      mods = "LEADER|CTRL",
+      action = action.SplitVertical({ domain = "CurrentPaneDomain" }),
+    },
+    {
+      key = "|",
+      mods = "LEADER|CTRL|SHIFT",
+      action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+    },
+  },
 }
 
-local function split_nav(resize_or_move, key)
-	local direction = resize_or_move == "resize" and key or direction_keys[key]
-	key = resize_or_move == "resize" and key .. "Arrow" or key
-	local mods = "CTRL"
-	return {
-		key = key,
-		mods = mods,
-		action = wezterm.action_callback(function(win, pane)
-			if is_vim(pane) then
-				-- pass the keys through to vim/nvim
-				-- for nvim resize key i map it with alt arrow key
-				win:perform_action({
-					SendKey = {
-						key = key,
-						mods = mods,
-					},
-				}, pane)
-			else
-				if resize_or_move == "resize" then
-					win:perform_action({ AdjustPaneSize = { direction, 3 } }, pane)
-				else
-					win:perform_action({ ActivatePaneDirection = direction }, pane)
-				end
-			end
-		end),
-	}
-end
+smart_splits.apply_to_config(config, {
+  direction_keys = {
+    move = { "h", "j", "k", "l" },
+    resize = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
+  },
+  modifiers = { move = "CTRL", resize = "CTRL" },
+  log_level = "error",
+})
 
-local function bind_keys(key, mods, event)
-	return { key = key, mods = mods, action = event }
-end
-
-local function unbind_keys(key, mod)
-	return bind_keys(key, mod, action.SendKey({ key = key, mods = mod }))
-end
-
-return {
-	color_scheme = "OneDark (base16)",
-	-- color_scheme = "Catppuccin Macchiato",
-	enable_wayland = false,
-	default_prog = { "/bin/bash" },
-
-	font = wezterm.font_with_fallback({
-		{ family = "Iosevkasf" },
-		{
-			family = "JetBrains Mono",
-			harfbuzz_features = { "zero=1", "cv06=1", "cv07=1", "ss19=1", "cv16=1" },
-		},
-		{ family = "Intel One Mono" },
-		{ family = "Symbols Nerd Font" },
-		{ family = "Noto Color Emoji" },
-	}),
-
-	font_size = 13,
-	-- line_height = 1.2,
-
-	dpi = 96,
-
-	window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
-
-	use_fancy_tab_bar = false,
-	hide_tab_bar_if_only_one_tab = true,
-	tab_bar_at_bottom = true,
-
-	window_decorations = "NONE",
-	initial_rows = 35,
-	initial_cols = 115,
-
-	use_cap_height_to_scale_fallback_fonts = true,
-	audible_bell = "Disabled",
-
-	-- disable window close confirmation
-	window_close_confirmation = "NeverPrompt",
-
-	-- leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
-
-	keys = {
-		-- move between split panes
-		split_nav("move", "h"),
-		split_nav("move", "j"),
-		split_nav("move", "k"),
-		split_nav("move", "l"),
-
-		-- resize panes
-		split_nav("resize", "Left"),
-		split_nav("resize", "Down"),
-		split_nav("resize", "Up"),
-		split_nav("resize", "Right"),
-
-		-- bind_keys("w", "LEADER", action.CloseCurrentPane({ confirm = true })),
-		-- bind_keys("w", "LEADER|SHIFT", action.CloseCurrentTab({ confirm = true })),
-		-- bind_keys("z", "LEADER", action.TogglePaneZoomState),
-		-- bind_keys('"', "LEADER|SHIFT", action.SplitVertical({ domain = "CurrentPaneDomain" })),
-		-- bind_keys("%", "LEADER|SHIFT", action.SplitHorizontal({ domain = "CurrentPaneDomain" })),
-		-- bind_keys("T", "LEADER|SHIFT", action.SpawnTab("CurrentPaneDomain")),
-
-		-- unbind_keys("z", "CTRL|SHIFT"),
-		-- unbind_keys('"', "CTRL|SHIFT|ALT"),
-		-- unbind_keys("%", "CTRL|SHIFT|ALT"),
-		-- unbind_keys("t", "CTRL|SHIFT"),
-		-- unbind_keys("w", "CTRL|SHIFT"),
-	},
-}
+return config
