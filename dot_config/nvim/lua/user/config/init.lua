@@ -1,0 +1,5 @@
+require "user.config.global"
+require "user.config.option"
+require "user.config.setup"
+require "user.config.mapping"
+require "user.config.autocmd"

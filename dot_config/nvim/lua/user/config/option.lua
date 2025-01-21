@@ -1,0 +1,65 @@
+local option = {
+  number = true,
+  relativenumber = true,
+  numberwidth = 1,
+  mouse = "a",
+  showmode = false,
+  clipboard = "unnamedplus",
+  breakindent = true,
+  undofile = true,
+  signcolumn = "yes",
+  updatetime = 250,
+  timeoutlen = 400,
+  splitright = true,
+  splitbelow = true,
+  list = true,
+  listchars = { tab = "» ", trail = "·", nbsp = "␣" },
+  fillchars = { eob = " ", foldopen = "", foldclose = "", foldsep = " " },
+  inccommand = "split",
+  scrolloff = 10,
+  sidescrolloff = 5,
+  hlsearch = true,
+  laststatus = 3,
+  wrap = false,
+  ignorecase = true,
+  smartcase = true,
+  cmdheight = 0,
+  softtabstop = 4,
+  shiftwidth = 4,
+  expandtab = false,
+  foldcolumn = "1",
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
+  foldlevel = 99,
+  cursorline = true,
+  showtabline = 2,
+  sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize",
+  shortmess = "ltToOCFS",
+}
+
+for k, v in pairs(option) do
+  vim.opt[k] = v
+end
+
+vim.opt.wildignore:append { ".javac", "node_modules", "*.pyc" }
+vim.opt.wildignore:append { ".aux", ".out", ".toc" } -- LaTeX
+vim.opt.wildignore:append {
+  ".o",
+  ".obj",
+  ".dll",
+  ".exe",
+  ".so",
+  ".a",
+  ".lib",
+  ".pyc",
+  ".pyo",
+  ".pyd",
+  ".swp",
+  ".swo",
+  ".class",
+  ".DS_Store",
+  ".git",
+  ".hg",
+  ".orig",
+}
+vim.opt.suffixesadd:append { ".java", ".rs" } -- search for suffexes using gf
