@@ -44,16 +44,14 @@ return {
             },
           }
           local wk_format = {
-            { "<leader>c", group = "Cargo", icon = require("utils").get_icon "package", buffer = bufnr },
+            { "<leader>c", group = "Cargo", icon = require("user.utils").get_icon "package", buffer = bufnr },
           }
 
           for mode, maps in pairs(mapping) do
             for _, map in ipairs(maps) do
               table.insert(wk_format, {
                 map_prefix .. map[1],
-                function()
-                  map[2]()
-                end,
+                function() map[2]() end,
                 desc = desc_prefix .. map[3],
                 mode = mode,
                 buffer = bufnr,
