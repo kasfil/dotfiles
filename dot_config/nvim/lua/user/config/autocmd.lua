@@ -186,44 +186,9 @@ aucmd("ColorScheme", {
       palette[group] = colors[1]
     end
 
-    -- aqua             = "#89b482"
-    -- bg0              = "#1D2021"
-    -- bg1              = "#282828"
-    -- bg2              = "#282828"
-    -- bg3              = "#3c3836"
-    -- bg4              = "#3c3836"
-    -- bg5              = "#504945"
-    -- bg_current_word  = "#32302f"
-    -- bg_diff_blue     = "#0d3138"
-    -- bg_diff_green    = "#32361a"
-    -- bg_diff_red      = "#3c1f1e"
-    -- bg_dim           = "#141617"
-    -- bg_green         = "#a9b665"
-    -- bg_red           = "#ea6962"
-    -- bg_statusline1   = "#282828"
-    -- bg_statusline2   = "#32302f"
-    -- bg_statusline3   = "#504945"
-    -- bg_visual_blue   = "#2e3b3b"
-    -- bg_visual_green  = "#333e34"
-    -- bg_visual_red    = "#442e2d"
-    -- bg_visual_yellow = "#473c29"
-    -- bg_yellow        = "#d8a657"
-    -- blue             = "#7daea3"
-    -- fg0              = "#d4be98"
-    -- fg1              = "#ddc7a1"
-    -- green            = "#a9b665"
-    -- grey0            = "#7c6f64"
-    -- grey1            = "#928374"
-    -- grey2            = "#a89984"
-    -- none             = "NONE"
-    -- orange           = "#e78a4e"
-    -- purple           = "#d3869b"
-    -- red              = "#ea6962"
-    -- yellow           = "#d8a657"
-
     local custom_hl = {
-      CodeiumSuggestion = { fg = palette.bg3, bg = palette.none, italic = true },
-      InlayHints = { fg = palette.bg5, bg = palette.none, italic = true },
+      CodeiumSuggestion = { fg = palette.bg5, bg = palette.none, italic = true },
+      InlayHints = { fg = palette.bg4, bg = palette.none, italic = true },
       FoldColumn = { fg = palette.bg4, bg = palette.none },
       CursorLineFold = { fg = palette.bg4, bg = palette.none, nocombine = true, force = true },
       CursorLineNr = { fg = palette.green, bg = palette.none },
@@ -240,14 +205,14 @@ aucmd("ColorScheme", {
 
       -- Indent
       IblIndent = { fg = palette.bg1, bg = palette.none },
-      IblScope = { fg = palette.bg_visual_red, bg = palette.none },
+      IblScope = { fg = palette.bg_visual_yellow, bg = palette.none },
 
       -- winbar
-      Winbar = { fg = palette.fg0, bg = palette.bg_statusline1 },
+      Winbar = { fg = palette.fg0, bg = palette.bg2 },
 
       -- treesitter-context
-      TreesitterContext = { fg = palette.fg0, bg = palette.bg2 },
-      TreesitterContextLineNumber = { fg = palette.bg5, bg = palette.bg2 },
+      TreesitterContext = { fg = palette.fg0, bg = palette.bg1 },
+      TreesitterContextLineNumber = { fg = palette.bg5, bg = palette.bg1 },
 
       -- navic
       NavicIconsFile = { bg = palette.bg_statusline1, inherit = "NavicIconsFile" },
