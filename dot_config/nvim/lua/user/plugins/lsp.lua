@@ -47,9 +47,7 @@ return {
           map("grl", vim.lsp.codelens.run, "Run Codelens")
           map("K", function()
             local winid = require("ufo").peekFoldedLinesUnderCursor()
-            if not winid then
-              vim.cmd["Lspsaga"] "hover_doc"
-            end
+            if not winid then vim.cmd["Lspsaga"] "hover_doc" end
           end, "Hover documentation")
 
           -- The following two autocommands are used to highlight references of the
@@ -90,17 +88,22 @@ return {
           -- this likely unecessary, but default signature help is taking all window width
           -- then we need to pass the config to make it usable
           if client and client.server_capabilities.signatureHelpProvider then
-            vim.keymap.set({ "i", "n" }, "<C-k>", function()
-              vim.lsp.buf.signature_help {
-                silent = true,
-                max_width = 70,
-                max_height = 12,
-                focusable = false,
-                border = "single",
-                title = "LSP Signature",
-                title_pos = "center",
-              }
-            end, { silent = true, buffer = event.buf })
+            vim.keymap.set(
+              { "i", "n" },
+              "<C-k>",
+              function()
+                vim.lsp.buf.signature_help {
+                  silent = true,
+                  max_width = 70,
+                  max_height = 12,
+                  focusable = false,
+                  border = "single",
+                  title = "LSP Signature",
+                  title_pos = "center",
+                }
+              end,
+              { silent = true, buffer = event.buf }
+            )
           end
 
           -- The following autocommand is used to enable inlay hints in your
@@ -264,9 +267,7 @@ return {
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
-        callback = function()
-          require("lint").try_lint()
-        end,
+        callback = function() require("lint").try_lint() end,
       })
     end,
   },
@@ -365,9 +366,7 @@ return {
     keys = {
       {
         "<leader>bf",
-        function()
-          require("conform").format { async = true, lsp_fallback = true }
-        end,
+        function() require("conform").format { async = true, lsp_fallback = true } end,
         mode = "",
         desc = "format",
       },
