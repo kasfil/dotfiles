@@ -42,15 +42,18 @@ export PATH="$PATH:/home/kasf/.local/bin"
 
 export GOROOT="$HOME/.gobrew/current/go"
 
+export HF_HOME="/mnt/secondary/.cache/huggingface"
+
 eval "$(starship init bash)"
 eval "$(zoxide init bash --cmd j --hook pwd)"
 eval "$(poetry completions bash)"
 eval "$(register-python-argcomplete pipx)"
 eval "$(direnv hook bash)"
 eval "$(bob complete bash)"
-source /usr/share/nvm/init-nvm.sh
+eval "$(atuin init bash)"
 
+source /usr/share/nvm/init-nvm.sh
 source /home/kasf/.config/broot/launcher/bash/br
 
+
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
