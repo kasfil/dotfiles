@@ -38,7 +38,7 @@ local config = {
   -- disable window close confirmation
   window_close_confirmation = "NeverPrompt",
 
-  color_scheme = "gruvbox_material_dark_hard",
+  color_scheme = "mute-session",
   color_schemes = {
     ["gruvbox_material_dark_hard"] = {
       foreground = "#D4BE98",
@@ -51,6 +51,61 @@ local config = {
 
       ansi = { "#1d2021", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98" },
       brights = { "#eddeb5", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98" },
+    },
+    ["mute-session"] = {
+      background = "#181818", -- Matches `bg0`
+      foreground = "#B9AB8F", -- Matches `fg0`
+      cursor_bg = "#C4B69A", -- Matches `fg1`
+      cursor_fg = "#181818", -- Cursor text (inverse of bg0)
+      cursor_border = "#C4B69A", -- Cursor outline color
+
+      --  Selection Colors
+      selection_bg = "#383634", -- Matches `bg4`
+      selection_fg = "#B9AB8F", -- Matches `fg0`
+
+      --  Normal Colors (Matching Syntax Colors)
+      ansi = {
+        "#181818", -- Black (bg0)
+        "#C56F6B", -- Red (Keywords, Errors)
+        "#9A9F72", -- Green (Strings, Success Messages)
+        "#B89D6B", -- Yellow (Constants, Parameters)
+        "#7B9590", -- Blue (Types, Class Names)
+        "#A88995", -- Purple (Control Flow)
+        "#6F8A7E", -- Cyan (Imports, Special Types)
+        "#B9AB8F", -- White (fg0)
+      },
+
+      -- 🎨 Bright Colors
+      brights = {
+        "#252525", -- Bright Black (bg2)
+        "#D27C7A", -- Bright Red (Modified)
+        "#A8A97E", -- Bright Green
+        "#C7AA7B", -- Bright Yellow
+        "#8AA5A0", -- Bright Blue
+        "#B48E9F", -- Bright Purple
+        "#7E998B", -- Bright Cyan
+        "#C4B69A", -- Bright White (fg1)
+      },
+
+      -- ⚡ Visual Mode, Diff & Git Colors
+      indexed = {
+        [17] = "#16252A", -- bg_diff_blue
+        [35] = "#1F2617", -- bg_diff_green
+        [52] = "#2A1B1C", -- bg_diff_red
+        [233] = "#253233", -- bg_visual_blue
+        [34] = "#2A332C", -- bg_visual_green
+        [136] = "#3A3325", -- bg_visual_yellow
+      },
+
+      -- 🔍 Search Highlighting
+      search_highlight_bg = "#2D2B2A",
+      search_highlight_fg = "#B9AB8F",
+
+      -- ⚠️ LSP Diagnostic Colors (for Neovim integration)
+      warning_fg = "#C18A63",
+      error_fg = "#C56F6B",
+      info_fg = "#7B9590",
+      hint_fg = "#9A9F72",
     },
   },
 
