@@ -11,7 +11,21 @@ return {
     event = { "BufReadPost" },
     opts = {},
   },
-  { "RRethy/vim-illuminate", event = { "BufReadPost" } },
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost" },
+    config = function()
+      require("illuminate").configure {
+        filetypes_denylist = {
+          "dirbuf",
+          "dirvish",
+          "fugitive",
+          "aerial",
+          "neo-tree",
+        },
+      }
+    end,
+  },
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
