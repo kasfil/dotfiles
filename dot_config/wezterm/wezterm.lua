@@ -8,10 +8,7 @@ local config = {
 
   font = wezterm.font_with_fallback({
     { family = "IntoneMono NFP" },
-    -- { family = "0xProto", harfbuzz_features = { "ss01=1", "calt=0", "dlig=0", "liga=0" } },
-    -- { family = "JetBrains Mono", harfbuzz_features = { "ss19=1", "zero=1", "cv06=1", "cv07=1" } },
     { family = "Symbols Nerd Font" },
-    -- { family = "OpenMoji", assume_emoji_presentation = true },
     { family = "Noto Color Emoji", assume_emoji_presentation = true },
   }),
 
@@ -97,15 +94,7 @@ local config = {
         [136] = "#3A3325", -- bg_visual_yellow
       },
 
-      -- 🔍 Search Highlighting
-      search_highlight_bg = "#2D2B2A",
-      search_highlight_fg = "#B9AB8F",
-
-      -- ⚠️ LSP Diagnostic Colors (for Neovim integration)
-      warning_fg = "#C18A63",
-      error_fg = "#C56F6B",
-      info_fg = "#7B9590",
-      hint_fg = "#9A9F72",
+      compose_cursor = "#B89D6B",
     },
   },
 
