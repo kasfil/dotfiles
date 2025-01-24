@@ -28,16 +28,12 @@ C.space = function(opts)
 end
 
 ---Vim extender component
-C.fill = function()
-  return { provider = "%=" }
-end
+C.fill = function() return { provider = "%=" } end
 
 ---Vim mode component
 C.mode = function(opts)
   return extend_opts({
-    init = function(self)
-      self.mode = vim.fn.mode()
-    end,
+    init = function(self) self.mode = vim.fn.mode() end,
     static = {
       mode_name = setmetatable({
         ["n"] = "NORMAL",
@@ -77,20 +73,14 @@ C.mode = function(opts)
         ["!"] = "SHELL",
         ["t"] = "TERMINAL",
       }, {
-        __index = function()
-          return "OTHER"
-        end,
+        __index = function() return "OTHER" end,
       }),
     },
-    provider = function(self)
-      return "[" .. self.mode_name[vim.fn.mode()] .. "]"
-    end,
+    provider = function(self) return "[" .. self.mode_name[vim.fn.mode()] .. "]" end,
     update = {
       "ModeChanged",
       pattern = "*:*",
-      callback = vim.schedule_wrap(function()
-        vim.cmd.redrawstatus()
-      end),
+      callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
     },
   }, opts)
 end
@@ -103,24 +93,16 @@ C.file_icon = function(opts)
       ---@diagnostic disable-next-line: undefined-global
       self.icon, self.icon_color, _ = MiniIcons.get("file", vim.fn.fnamemodify(filename, ":p:t"))
     end,
-    provider = function(self)
-      return self.icon and (self.icon .. " ")
-    end,
-    hl = function(self)
-      return self.icon_color
-    end,
+    provider = function(self) return self.icon and (self.icon .. " ") end,
+    hl = function(self) return self.icon_color end,
   }, opts)
 end
 
 --- File name component
 C.file_name = function(opts)
   return extend_opts({
-    init = function(self)
-      self.filename = vim.api.nvim_buf_get_name(0)
-    end,
-    provider = function(self)
-      return vim.fn.fnamemodify(self.filename, ":p:t")
-    end,
+    init = function(self) self.filename = vim.api.nvim_buf_get_name(0) end,
+    provider = function(self) return vim.fn.fnamemodify(self.filename, ":p:t") end,
   }, opts)
 end
 
@@ -143,27 +125,19 @@ C.diagnostics = function(opts)
     end,
     { provider = " " },
     {
-      provider = function(self)
-        return self.errors > 0 and (self.err_icon .. self.errors .. " ")
-      end,
+      provider = function(self) return self.errors > 0 and (self.err_icon .. self.errors .. " ") end,
       hl = "DiagnosticError",
     },
     {
-      provider = function(self)
-        return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
-      end,
+      provider = function(self) return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ") end,
       hl = "DiagnosticWarn",
     },
     {
-      provider = function(self)
-        return self.info > 0 and (self.info_icon .. self.info .. " ")
-      end,
+      provider = function(self) return self.info > 0 and (self.info_icon .. self.info .. " ") end,
       hl = "DiagnosticInfo",
     },
     {
-      provider = function(self)
-        return self.hints > 0 and (self.hint_icon .. self.hints .. " ")
-      end,
+      provider = function(self) return self.hints > 0 and (self.hint_icon .. self.hints .. " ") end,
       hl = "DiagnosticHint",
     },
   }, opts)
@@ -183,47 +157,29 @@ C.git = function(opts)
       hl = "BlueSign",
     },
     {
-      provider = function(self)
-        return self.status.head
-      end,
+      provider = function(self) return self.status.head end,
     },
     {
-      condition = function(self)
-        return self.modified
-      end,
+      condition = function(self) return self.modified end,
       provider = " [",
     },
     {
-      condition = function(self)
-        return self.status.added ~= 0
-      end,
-      provider = function(self)
-        return "+" .. self.status.added
-      end,
+      condition = function(self) return self.status.added ~= 0 end,
+      provider = function(self) return "+" .. self.status.added end,
       hl = "GitSignsAdd",
     },
     {
-      condition = function(self)
-        return self.status.changed ~= 0
-      end,
-      provider = function(self)
-        return "~" .. self.status.changed
-      end,
+      condition = function(self) return self.status.changed ~= 0 end,
+      provider = function(self) return "~" .. self.status.changed end,
       hl = "GitSignsChange",
     },
     {
-      condition = function(self)
-        return self.status.removed ~= 0
-      end,
-      provider = function(self)
-        return "-" .. self.status.removed
-      end,
+      condition = function(self) return self.status.removed ~= 0 end,
+      provider = function(self) return "-" .. self.status.removed end,
       hl = "GitSignsDelete",
     },
     {
-      condition = function(self)
-        return self.modified
-      end,
+      condition = function(self) return self.modified end,
       provider = "]",
     },
   }, opts)
@@ -231,41 +187,28 @@ end
 
 C.cmd_info = function(opts)
   return extend_opts({
-    condition = function()
-      return vim.fn.reg_recording() ~= "" or vim.v.hlsearch ~= 0
-    end,
+    condition = function() return vim.fn.reg_recording() ~= "" or vim.v.hlsearch ~= 0 end,
     {
-      condition = function()
-        return vim.fn.reg_recording() ~= ""
-      end,
+      condition = function() return vim.fn.reg_recording() ~= "" end,
       hl = "RedBold",
       provider = function()
         local register = vim.fn.reg_recording()
-        if register == "" then
-          return
-        end
+        if register == "" then return end
 
         return " Rec: " .. register
       end,
       update = {
         "RecordingEnter",
         "RecordingLeave",
-        callback = vim.schedule_wrap(function()
-          vim.cmd.redrawstatus()
-        end),
+        callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
       },
     },
     {
-      condition = function()
-        return vim.v.hlsearch ~= 0
-      end,
+      condition = function() return vim.v.hlsearch ~= 0 end,
       hl = "YellowBold",
       provider = function()
-        local search_func = vim.tbl_isempty(opts or {}) and function()
-          return vim.fn.searchcount()
-        end or function()
-          return vim.fn.searchcount(opts)
-        end
+        local search_func = vim.tbl_isempty(opts or {}) and function() return vim.fn.searchcount() end
+          or function() return vim.fn.searchcount(opts) end
 
         local search_ok, search = pcall(search_func)
         if search_ok and type(search) == "table" and search.total then
@@ -294,9 +237,7 @@ C.codeium = function()
       local status = cvt.status()
       local text = "0"
 
-      cvt.set_statusbar_refresh(function()
-        vim.cmd.redrawstatus()
-      end)
+      cvt.set_statusbar_refresh(function() vim.cmd.redrawstatus() end)
 
       if status.state == "idle" then
         text = "idle"
@@ -320,15 +261,11 @@ C.unique_path = function(bufnr)
   local unique_path = ""
   local current
 
-  if not vim.api.nvim_buf_is_valid(bufnr) or name == "" then
-    return name
-  end
+  if not vim.api.nvim_buf_is_valid(bufnr) or name == "" then return name end
 
   for _, value in ipairs(vim.t.bufs or {}) do
     if name == vim.fn.fnamemodify(vim.api.nvim_buf_get_name(value), ":t") and value ~= bufnr then
-      if not current then
-        current = path_feeder(bufnr)
-      end
+      if not current then current = path_feeder(bufnr) end
       local other = path_feeder(value)
 
       for i = #current - 1, 1, -1 do
@@ -340,9 +277,7 @@ C.unique_path = function(bufnr)
     end
   end
 
-  if #unique_path > max_length then
-    return string.sub(unique_path, 1, max_length - 2) .. get_icon "elipsis"
-  end
+  if #unique_path > max_length then return string.sub(unique_path, 1, max_length - 2) .. get_icon "elipsis" end
 
   return unique_path
 end
@@ -369,22 +304,16 @@ C.breadcumbs = function(opts)
     utils.insert(
       C.space(),
       C.file_icon {
-        hl = function(self)
-          return { fg = get_hl(self.icon_color).fg, bg = utils.get_highlight("WinBar").bg }
-        end,
+        hl = function(self) return { fg = get_hl(self.icon_color).fg, bg = utils.get_highlight("WinBar").bg } end,
       },
       C.file_name { hl = "NavicText" },
       {
         provider = get_icon "telescope_select_caret",
-        condition = function(self)
-          return self.location and self.location ~= ""
-        end,
+        condition = function(self) return self.location and self.location ~= "" end,
         hl = "NavicSeparator",
       },
       {
-        provider = function(self)
-          return self.location
-        end,
+        provider = function(self) return self.location end,
       }
     ),
   }, opts)
@@ -393,27 +322,21 @@ end
 ---tabline picker indicator
 C.tab_file_picker = function(opts)
   return extend_opts({
-    condition = function(self)
-      return self._show_picker
-    end,
+    condition = function(self) return self._show_picker end,
     init = function(self)
       local bufname = vim.api.nvim_buf_get_name(self.bufnr)
       bufname = vim.fn.fnamemodify(bufname, ":t")
       local label = bufname:sub(1, 1)
       local i = 2
       while self._picker_labels[label] do
-        if i > #bufname then
-          break
-        end
+        if i > #bufname then break end
         label = bufname:sub(i, i)
         i = i + 1
       end
       self._picker_labels[label] = self.bufnr
       self.label = label
     end,
-    provider = function(self)
-      return self.label .. " "
-    end,
+    provider = function(self) return self.label .. " " end,
     hl = "RedBold",
   }, opts)
 end
@@ -421,14 +344,10 @@ end
 ---Close button tabline component
 C.tab_close_indicator = function(opts)
   return extend_opts({
-    init = function(self)
-      self.modified = vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
-    end,
+    init = function(self) self.modified = vim.api.nvim_get_option_value("modified", { buf = self.bufnr }) end,
     provider = function(self)
       local icon = get_icon "close_btn"
-      if self.modified then
-        icon = get_icon "modified"
-      end
+      if self.modified then icon = get_icon "modified" end
 
       return icon .. " "
     end,
@@ -444,13 +363,12 @@ C.tab_close_indicator = function(opts)
     on_click = {
       callback = function(_, minwid)
         vim.schedule(function()
+          ---@diagnostic disable-next-line: undefined-global
           MiniBufremove.delete(minwid, false)
           vim.cmd.redrawtabline()
         end)
       end,
-      minwid = function(self)
-        return self.bufnr
-      end,
+      minwid = function(self) return self.bufnr end,
       name = "heirline_tabline_close_buffer_callback",
     },
   }, opts)
@@ -475,13 +393,9 @@ C.tabfiles = function(opts)
         self.right_pad = math.ceil(remains / 2)
       end
     end,
-    condition = function(self)
-      return vim.api.nvim_buf_is_valid(self.bufnr) and vim.bo[self.bufnr].buflisted
-    end,
+    condition = function(self) return vim.api.nvim_buf_is_valid(self.bufnr) and vim.bo[self.bufnr].buflisted end,
     hl = function(self)
-      if self.is_active or self.is_visible then
-        return "BufferActiveSep"
-      end
+      if self.is_active or self.is_visible then return "BufferActiveSep" end
       return "BufferInactiveSep"
     end,
     utils.insert(
@@ -499,21 +413,15 @@ C.tabfiles = function(opts)
               vim.api.nvim_win_set_buf(0, minwid)
             end
           end,
-          minwid = function(self)
-            return self.bufnr
-          end,
+          minwid = function(self) return self.bufnr end,
           name = "heirline_tabline_close_buffer_callback",
         },
       },
       {
-        provider = function(self)
-          return string.rep(" ", self.left_pad)
-        end,
+        provider = function(self) return string.rep(" ", self.left_pad) end,
       },
       C.file_icon {
-        condition = function(self)
-          return not self._show_picker
-        end,
+        condition = function(self) return not self._show_picker end,
         hl = function(self)
           if self.is_active or self.is_visible then
             return self.icon_color
@@ -524,9 +432,7 @@ C.tabfiles = function(opts)
       },
       C.tab_file_picker(),
       {
-        provider = function(self)
-          return self.buf_text
-        end,
+        provider = function(self) return self.buf_text end,
         hl = function(self)
           local fg = get_hl("Grey").fg
           local bold = false
@@ -538,9 +444,7 @@ C.tabfiles = function(opts)
         end,
       },
       {
-        provider = function(self)
-          return string.rep(" ", self.right_pad)
-        end,
+        provider = function(self) return string.rep(" ", self.right_pad) end,
       }
     ),
     C.tab_close_indicator(),
@@ -579,21 +483,15 @@ end
 
 C.tabnu = function()
   local tabpage = {
-    provider = function(self)
-      return "%" .. self.tabnr .. "T " .. self.tabpage .. " %T"
-    end,
+    provider = function(self) return "%" .. self.tabnr .. "T " .. self.tabpage .. " %T" end,
     hl = function(self)
-      if self.is_active then
-        return "BufferActive"
-      end
+      if self.is_active then return "BufferActive" end
       return "BufferInactive"
     end,
   }
 
   return {
-    condition = function()
-      return #vim.api.nvim_list_tabpages() > 1
-    end,
+    condition = function() return #vim.api.nvim_list_tabpages() > 1 end,
     utils.make_tablist(tabpage),
   }
 end
