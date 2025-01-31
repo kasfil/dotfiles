@@ -227,6 +227,10 @@ return {
     },
     opts = {
       symbol_in_winbar = { enable = false },
+      outline = {
+        detail = false,
+        win_width = 45,
+      },
       code_action = {
         show_server_name = true,
         keys = {
@@ -274,7 +278,6 @@ return {
   {
     "stevearc/aerial.nvim",
     event = "VeryLazy",
-    keys = { { "<leader>wS", "<Cmd>AerialToggle<CR>", desc = "Toggle aerial" } },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",

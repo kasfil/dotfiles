@@ -29,8 +29,8 @@ return {
   },
   cmd = "Neotree",
   keys = {
-    { "<leader>wet", ":Neotree toggle<CR>", silent = true, desc = "NeoTree toggle" },
-    { "<leader>wes", ":Neotree focus<CR>", silent = true, desc = "NeoTree focus" },
+    { "<leader>e", ":Neotree toggle<CR>", silent = true, desc = "NeoTree toggle" },
+    { "<leader>o", ":Neotree focus<CR>", silent = true, desc = "NeoTree focus" },
   },
   opts = {
     hide_root_node = true,

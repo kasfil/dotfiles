@@ -31,16 +31,12 @@ return {
   -- Show info group
   {
     "<leader>sd",
-    function()
-      vim.diagnostic.open_float()
-    end,
+    function() vim.diagnostic.open_float() end,
     desc = "Show diagnostic message",
   },
   {
     "<leader>sqd",
-    function()
-      vim.diagnostic.setloclist()
-    end,
+    function() vim.diagnostic.setloclist() end,
     desc = "Quick fix diagnostic",
   },
 
@@ -87,106 +83,78 @@ return {
   },
   {
     "<leader>bp",
-    function()
-      require("user.utils.bufline").picker()
-    end,
+    function() require("user.utils.bufline").picker() end,
     desc = "Pick buffer",
   },
 
   -- Window group
-  { "<leader>w", group = "window", icon = " " },
-  { "<leader>wt", group = "Terminal", icon = " " },
-  { "<leader>we", group = "Filetree", icon = "󰙅 " },
-  { "<leader>wq", ":q<CR>", silent = true, desc = "Close" },
+  { "<leader>w", ":w!<CR>", desc = "Write buffer" },
+  { "<leader>q", ":q<CR>", silent = true, desc = "Close" },
 
   -- Global mapping not started with leader
   -- Navigation by smart-splits.nvim
   -- resizing splits
   {
     "<C-Left>",
-    function()
-      require("smart-splits").resize_left()
-    end,
+    function() require("smart-splits").resize_left() end,
     desc = "Resize window left",
   },
   {
     "<C-Down>",
-    function()
-      require("smart-splits").resize_down()
-    end,
+    function() require("smart-splits").resize_down() end,
     desc = "Resize window down",
   },
   {
     "<C-Up>",
-    function()
-      require("smart-splits").resize_up()
-    end,
+    function() require("smart-splits").resize_up() end,
     desc = "Resize window up",
   },
   {
     "<C-Right>",
-    function()
-      require("smart-splits").resize_right()
-    end,
+    function() require("smart-splits").resize_right() end,
     desc = "Resize window right",
   },
   -- moving between splits
   {
     "<C-h>",
-    function()
-      require("smart-splits").move_cursor_left()
-    end,
+    function() require("smart-splits").move_cursor_left() end,
     desc = "Focus window left",
   },
   {
     "<C-j>",
-    function()
-      require("smart-splits").move_cursor_down()
-    end,
+    function() require("smart-splits").move_cursor_down() end,
     desc = "Focus window down",
   },
   {
     "<C-k>",
-    function()
-      require("smart-splits").move_cursor_up()
-    end,
+    function() require("smart-splits").move_cursor_up() end,
     desc = "Focus window up",
   },
   {
     "<C-l>",
-    function()
-      require("smart-splits").move_cursor_right()
-    end,
+    function() require("smart-splits").move_cursor_right() end,
     desc = "Focus window right",
   },
   -- swapping buffers between windows
-  { "<leader>wm", group = "swap", icon = "󰯍 " },
+  { "<leader>bm", group = "swap", icon = "󰯍 " },
   {
-    "<leader>wmh",
-    function()
-      require("smart-splits").swap_buf_left()
-    end,
+    "<leader>bmh",
+    function() require("smart-splits").swap_buf_left() end,
     desc = "Swap window left",
   },
   {
-    "<leader>wmj",
-    function()
-      require("smart-splits").swap_buf_down()
-    end,
+    "<leader>bmj",
+    function() require("smart-splits").swap_buf_down() end,
     desc = "Swap window down",
   },
   {
-    "<leader>wmk",
-    function()
-      require("smart-splits").swap_buf_up()
-    end,
+    "<leader>bmk",
+    function() require("smart-splits").swap_buf_up() end,
     desc = "Swap window up",
   },
   {
-    "<leader>wml",
-    function()
-      require("smart-splits").swap_buf_right()
-    end,
+    "<leader>bml",
+    function() require("smart-splits").swap_buf_right() end,
     desc = "Swap window right",
   },
 }
