@@ -63,6 +63,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "spectre_panel",
     "startuptime",
     "tsplayground",
+    "dap-float",
+    "dap-repl",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -269,6 +271,7 @@ aucmd("ColorScheme", {
       SagaTitle = { bg = palette.bg_dim, fg = palette.orange },
       SagaBorder = { bg = palette.bg_dim, fg = palette.bg_dim },
       RenameNormal = { link = "NormalFloat" },
+      OutlineNormal = { link = "SideWin" },
     }
 
     for k, v in pairs(custom_hl) do
