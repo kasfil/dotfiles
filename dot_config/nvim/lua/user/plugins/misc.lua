@@ -3,8 +3,10 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-fugitive",
 
-  -- TODO: Do we need to add neoconf.nvim?
-  -- https://github.com/folke/neoconf.nvim
+  {
+    "elubow/cql-vim",
+    ft = { "cqlang", "cql" },
+  },
 
   {
     "nmac427/guess-indent.nvim",
@@ -29,7 +31,12 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
-    opts = {},
+    config = function()
+      require("Comment").setup()
+      local ft = require "Comment.ft"
+      -- CQL comment string
+      ft.cql = { "--%s", "/*%s*/" }
+    end,
   },
 
   {
