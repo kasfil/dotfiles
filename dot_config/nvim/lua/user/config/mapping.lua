@@ -43,11 +43,6 @@ return {
   -- Buffer group
   { "<leader>b", group = "buffer", icon = " " },
   {
-    "<leader>bw",
-    "<Cmd>write<CR>",
-    desc = "Write",
-  },
-  {
     "<leader>bc",
     function()
       _G.MiniBufremove.delete(0, false) ---@diagnostic disable-line: undefined-field
