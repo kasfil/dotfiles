@@ -1,16 +1,16 @@
-local wezterm = require("wezterm")
+local wezterm = require "wezterm"
 local action = wezterm.action
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+local smart_splits = wezterm.plugin.require "https://github.com/mrjones2014/smart-splits.nvim"
 
 local config = {
   enable_wayland = false,
   default_prog = { "/bin/bash" },
 
-  font = wezterm.font_with_fallback({
-    { family = "IntoneMono NFP" },
+  font = wezterm.font_with_fallback {
+    { family = "JetBrainsMono NFP", harfbuzz_features = { "ss19=1", "cv06=1", "cv07=1", "zero=1" } },
     { family = "Symbols Nerd Font" },
     { family = "Noto Color Emoji", assume_emoji_presentation = true },
-  }),
+  },
 
   font_size = 12,
   -- line_height = 1.1,
@@ -109,22 +109,22 @@ local config = {
     {
       key = "w",
       mods = "LEADER",
-      action = action.CloseCurrentPane({ confirm = true }),
+      action = action.CloseCurrentPane { confirm = true },
     },
     {
       key = "W",
       mods = "LEADER|SHIFT",
-      action = action.CloseCurrentTab({ confirm = true }),
+      action = action.CloseCurrentTab { confirm = true },
     },
     {
       key = "-",
       mods = "LEADER|CTRL",
-      action = action.SplitVertical({ domain = "CurrentPaneDomain" }),
+      action = action.SplitVertical { domain = "CurrentPaneDomain" },
     },
     {
       key = "|",
       mods = "LEADER|CTRL|SHIFT",
-      action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+      action = action.SplitHorizontal { domain = "CurrentPaneDomain" },
     },
   },
 }
