@@ -194,13 +194,14 @@ return {
       require("mason").setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua",
-        "debugpy",
-        "revive",
-        "delve",
-        "codelldb",
-      })
+      vim.list_extend(ensure_installed, { "stylua", "debugpy" })
+
+      -- install additional tool based on language tool existance
+      -- Go-lang
+      if vim.fn.executable "go" == 1 then vim.list_extend(ensure_installed, { "revive", "delve" }) end
+      -- Rust
+      if vim.fn.executable "cargo" == 1 then vim.list_extend(ensure_installed, { "codelldb" }) end
+
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
       require("mason-lspconfig").setup {
