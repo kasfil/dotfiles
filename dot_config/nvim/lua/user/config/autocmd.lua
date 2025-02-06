@@ -10,6 +10,44 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   end,
 })
 
+-- Update buffers when adding new buffers
+local bufferline_group = augroup "bufferline"
+aucmd({ "BufAdd", "BufEnter", "TabNewEntered" }, {
+  desc = "Update buffers when adding new buffers",
+  group = bufferline_group,
+  callback = function(args)
+    if not vim.t.bufs then vim.t.bufs = {} end
+    local bufs = vim.t.bufs
+    if not vim.tbl_contains(bufs, args.buf) then
+      table.insert(bufs, args.buf)
+      vim.t.bufs = bufs
+    end
+    vim.t.bufs = vim.tbl_filter(vim.api.nvim_buf_is_valid, vim.t.bufs)
+  end,
+})
+
+-- Update buffers when deleting buffers
+aucmd("BufDelete", {
+  desc = "Update buffers when deleting buffers",
+  group = bufferline_group,
+  callback = function(args)
+    for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+      local bufs = vim.t[tab].bufs
+      if bufs then
+        for i, bufnr in ipairs(bufs) do
+          if bufnr == args.buf then
+            table.remove(bufs, i)
+            vim.t[tab].bufs = bufs
+            break
+          end
+        end
+      end
+    end
+    vim.t.bufs = vim.tbl_filter(vim.api.nvim_buf_is_valid, vim.t.bufs)
+    vim.cmd.redrawtabline()
+  end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup "highlight_yank",
@@ -201,7 +239,7 @@ aucmd("ColorScheme", {
       TabLine = { fg = palette.none, bg = palette.bg_dim },
       BufferActive = { fg = palette.fg0, bg = palette.bg_statusline2, bold = true },
       BufferActiveSep = { fg = palette.blue, bg = palette.bg_statusline2 },
-      BufferInactive = { fg = palette.grey0, bg = palette.bg0 },
+      BufferInactive = { fg = palette.bg5, bg = palette.bg0 },
       BufferInactiveSep = { fg = palette.bg_dim, bg = palette.bg0 },
       TabLineFill = { link = "TabLine" },
 

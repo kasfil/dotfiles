@@ -9,16 +9,6 @@ local extend_opts = function(base, extender)
   return vim.tbl_extend("force", base, extender)
 end
 
----unique path feeder
-local path_feeder = function(bufnr)
-  local parts = {}
-  for match in (vim.api.nvim_buf_get_name(bufnr) .. "/"):gmatch("(.-)" .. "/") do
-    table.insert(parts, match)
-  end
-
-  return parts
-end
-
 ---Single space component
 C.space = function(opts)
   opts = opts or {}
@@ -261,6 +251,16 @@ C.unique_path = function(bufnr)
   local unique_path = ""
   local current
 
+  ---unique path feeder
+  local path_feeder = function(path_bufnr)
+    local parts = {}
+    for match in (vim.api.nvim_buf_get_name(path_bufnr) .. "/"):gmatch("(.-)" .. "/") do
+      table.insert(parts, match)
+    end
+
+    return parts
+  end
+
   if not vim.api.nvim_buf_is_valid(bufnr) or name == "" then return name end
 
   for _, value in ipairs(vim.t.bufs or {}) do
@@ -277,7 +277,7 @@ C.unique_path = function(bufnr)
     end
   end
 
-  if #unique_path > max_length then return string.sub(unique_path, 1, max_length - 2) .. get_icon "elipsis" end
+  if #unique_path > max_length then return string.sub(unique_path, 1, max_length - 2) .. get_icon "elipsis" .. "/" end
 
   return unique_path
 end
@@ -357,7 +357,7 @@ C.tab_close_indicator = function(opts)
       elseif self.is_active or self.is_visible then
         return "RedSign"
       else
-        return "Grey"
+        return "BufferInactive"
       end
     end,
     on_click = {
@@ -426,7 +426,7 @@ C.tabfiles = function(opts)
           if self.is_active or self.is_visible then
             return self.icon_color
           else
-            return "Grey"
+            return "BufferInactive"
           end
         end,
       },
@@ -434,10 +434,10 @@ C.tabfiles = function(opts)
       {
         provider = function(self) return self.buf_text end,
         hl = function(self)
-          local fg = get_hl("Grey").fg
+          local fg = get_hl("BufferInactive").fg
           local bold = false
           if self.is_active or self.is_visible then
-            fg = get_hl("Fg").fg
+            fg = get_hl("BufferActive").fg
             bold = true
           end
           return { fg = fg, bold = bold }
