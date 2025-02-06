@@ -1,7 +1,7 @@
 return {
   modified = "●",
   readonly = "󰈡",
-  close_btn = "",
+  close_btn = "󰅖",
   folder_closed = "󰉋",
   folder_open = "󰝰",
   git_branch = "",
