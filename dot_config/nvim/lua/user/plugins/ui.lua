@@ -13,7 +13,7 @@ return {
       local builtin = require "statuscol.builtin"
       require("statuscol").setup {
         relculright = true,
-        ft_ignore = { "neo-tree", "sagaoutline" },
+        ft_ignore = { "neo-tree", "sagaoutline", "fugitive" },
         bt_ignore = { "nofile" },
         segments = {
           {
