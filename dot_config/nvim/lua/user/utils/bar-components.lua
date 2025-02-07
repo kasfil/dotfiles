@@ -9,6 +9,22 @@ local extend_opts = function(base, extender)
   return vim.tbl_extend("force", base, extender)
 end
 
+---unique path feeder
+local path_feeder = function(path_bufnr)
+  local parts = {}
+  for match in (vim.api.nvim_buf_get_name(path_bufnr) .. "/"):gmatch("(.-)" .. "/") do
+    table.insert(parts, match)
+  end
+
+  return parts
+end
+
+local bufname = function(bufnr)
+  if vim.api.nvim_buf_is_valid(bufnr) then return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t") end
+
+  return ""
+end
+
 ---Single space component
 C.space = function(opts)
   opts = opts or {}
@@ -247,24 +263,14 @@ end
 ---@return string
 C.unique_path = function(bufnr)
   local max_length = 16
-  local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t") or ""
+  local name = bufname(bufnr)
   local unique_path = ""
   local current
-
-  ---unique path feeder
-  local path_feeder = function(path_bufnr)
-    local parts = {}
-    for match in (vim.api.nvim_buf_get_name(path_bufnr) .. "/"):gmatch("(.-)" .. "/") do
-      table.insert(parts, match)
-    end
-
-    return parts
-  end
 
   if not vim.api.nvim_buf_is_valid(bufnr) or name == "" then return name end
 
   for _, value in ipairs(vim.t.bufs or {}) do
-    if name == vim.fn.fnamemodify(vim.api.nvim_buf_get_name(value), ":t") and value ~= bufnr then
+    if name == bufname(value) and value ~= bufnr then
       if not current then current = path_feeder(bufnr) end
       local other = path_feeder(value)
 
