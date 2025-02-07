@@ -13,11 +13,15 @@ return {
 
       -- `cond` is a condition used to determine whether this plugin should be
       -- installed and loaded.
-      cond = function()
-        return vim.fn.executable "make" == 1
-      end,
+      cond = function() return vim.fn.executable "make" == 1 end,
     },
-    { "nvim-telescope/telescope-ui-select.nvim" },
+    "nvim-telescope/telescope-ui-select.nvim",
+    {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      -- This will not install any breaking changes.
+      -- For major updates, this must be adjusted manually.
+      version = "^1.0.0",
+    },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
     "nvim-tree/nvim-web-devicons",
@@ -58,13 +62,9 @@ return {
             col = vim.F.if_nil(entry.col, 1)
           elseif not entry.bufnr then
             local value = entry.value
-            if not value then
-              return
-            end
+            if not value then return end
 
-            if type(value) == "table" then
-              value = entry.display
-            end
+            if type(value) == "table" then value = entry.display end
 
             local sections = vim.split(value, ":")
 
@@ -91,9 +91,7 @@ return {
             end
           end
 
-          if row and col then
-            pcall(vim.api.nvim_win_set_cursor, 0, { row, col })
-          end
+          if row and col then pcall(vim.api.nvim_win_set_cursor, 0, { row, col }) end
         end
       else
         actions["select_" .. method](prompt_bufnr)
@@ -101,26 +99,16 @@ return {
     end
 
     local custom_actions = transform_mod {
-      multi_selection_open_vertical = function(prompt_bufnr)
-        multiopen(prompt_bufnr, "vertical")
-      end,
-      multi_selection_open_horizontal = function(prompt_bufnr)
-        multiopen(prompt_bufnr, "horizontal")
-      end,
-      multi_selection_open_tab = function(prompt_bufnr)
-        multiopen(prompt_bufnr, "tab")
-      end,
-      multi_selection_open = function(prompt_bufnr)
-        multiopen(prompt_bufnr, "default")
-      end,
+      multi_selection_open_vertical = function(prompt_bufnr) multiopen(prompt_bufnr, "vertical") end,
+      multi_selection_open_horizontal = function(prompt_bufnr) multiopen(prompt_bufnr, "horizontal") end,
+      multi_selection_open_tab = function(prompt_bufnr) multiopen(prompt_bufnr, "tab") end,
+      multi_selection_open = function(prompt_bufnr) multiopen(prompt_bufnr, "default") end,
     }
 
     local function stopinsert(callback)
       return function(prompt_bufnr)
         vim.cmd.stopinsert()
-        vim.schedule(function()
-          callback(prompt_bufnr)
-        end)
+        vim.schedule(function() callback(prompt_bufnr) end)
       end
     end
 
@@ -167,6 +155,7 @@ return {
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
     pcall(require("telescope").load_extension, "persisted")
+    pcall(require("telescope").load_extension, "live_grep_args")
 
     -- See `:help telescope.builtin`
     local builtin = require "telescope.builtin"
@@ -176,6 +165,7 @@ return {
       { "<leader>ff", builtin.find_files, desc = "Find Files" },
       { "<leader>fs", builtin.builtin, desc = "Find Builtin Telescope" },
       { "<leader>fw", builtin.live_grep, desc = "Find Word" },
+      { "<leader>fg", require("telescope").extensions.live_grep_args.live_grep_args, desc = "Advanced find word" },
       { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostic" },
       { "<leader>fr", builtin.resume, desc = "Resume Last Find" },
       { "<leader>f.", builtin.oldfiles, desc = "Find Recent Files" },
