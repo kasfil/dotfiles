@@ -5,17 +5,13 @@ return {
     {
       "L3MON4D3/LuaSnip",
       build = (function()
-        if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
-          return
-        end
+        if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then return end
         return "make install_jsregexp"
       end)(),
       dependencies = {
         {
           "rafamadriz/friendly-snippets",
-          config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-          end,
+          config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
         },
       },
     },
@@ -28,14 +24,12 @@ return {
     -- See `:help cmp`
     local cmp = require "cmp"
     local luasnip = require "luasnip"
-    local cvt = require "codeium.virtual_text"
+    local cvt_ok, cvt = pcall(require, "codeium.virtual_text")
     luasnip.config.setup {}
 
     cmp.setup {
       snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
+        expand = function(args) luasnip.lsp_expand(args.body) end,
       },
       preselect = cmp.PreselectMode.None,
       completion = { completeopt = "menu,menuone,noinsert,noselect" },
@@ -67,7 +61,7 @@ return {
         ["<C-n>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif cvt.status().total and cvt.status().total > 0 then
+          elseif cvt_ok and cvt.status().total and cvt.status().total > 0 then
             cvt.cycle_completions(1)
           else
             fallback()
@@ -78,7 +72,7 @@ return {
         ["<C-p>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif cvt.status().total and cvt.status().total > 0 then
+          elseif cvt_ok and cvt.status().total and cvt.status().total > 0 then
             cvt.cycle_completions(-1)
           else
             fallback()
@@ -115,12 +109,11 @@ return {
 
         -- add esc sequence support for codeium
         ["<C-e>"] = cmp.mapping(function(fallback)
-          -- vim.notify("Codeium status: " .. vim.b._codeium_status)
           if cmp.visible() then
             cmp.close()
-            cvt.cycle_or_complete()
+            if cvt_ok then cvt.cycle_or_complete() end
           else
-            cvt.clear()
+            if cvt_ok then cvt.clear() end
             fallback()
           end
         end),
@@ -134,14 +127,10 @@ return {
         -- <c-l> will move you to the right of each of the expansion locations.
         -- <c-h> is similar, except moving you backwards.
         ["<C-l>"] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
+          if luasnip.expand_or_locally_jumpable() then luasnip.expand_or_jump() end
         end, { "i", "s" }),
         ["<C-h>"] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
+          if luasnip.locally_jumpable(-1) then luasnip.jump(-1) end
         end, { "i", "s" }),
       },
       sources = {

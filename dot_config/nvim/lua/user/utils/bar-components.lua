@@ -235,11 +235,11 @@ C.codeium = function()
   return {
     hl = "GreenBold",
     condition = function()
-      local ok, _ = pcall(require, "codeium")
-      return ok
+      if pcall(require, "codeium") then return pcall(require, "codeium.virtual_text") end
     end,
     provider = function()
-      local cvt = require "codeium.virtual_text"
+      local ok, cvt = pcall(require, "codeium.virtual_text")
+      if not ok then return end
       local status = cvt.status()
       local text = "0"
 
