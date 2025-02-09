@@ -6,22 +6,24 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
-    tables = {
-      parts = {
-        top = { "┌", "─", "┐", "┬" },
-        header = { "│", "│", "│" },
-        separator = { "├", "─", "┤", "┼" },
-        row = { "│", "│", "│" },
-        bottom = { "└", "─", "┘", "┴" },
+    markdown = {
+      tables = {
+        parts = {
+          top = { "┌", "─", "┐", "┬" },
+          header = { "│", "│", "│" },
+          separator = { "├", "─", "┤", "┼" },
+          row = { "│", "│", "│" },
+          bottom = { "└", "─", "┘", "┴" },
 
-        overlap = { "├", "─", "┤", "┼" },
+          overlap = { "├", "─", "┤", "┼" },
 
-        align_left = "╼",
-        align_right = "╾",
-        align_center = { "╴", "╶" },
+          align_left = "╼",
+          align_right = "╾",
+          align_center = { "╴", "╶" },
+        },
+        block_decorator = false,
+        use_virt_lines = false,
       },
-      block_decorator = false,
-      use_virt_lines = false,
     },
   },
   -- config = function(_, opts)
