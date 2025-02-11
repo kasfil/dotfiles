@@ -103,6 +103,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "tsplayground",
     "dap-float",
     "dap-repl",
+    "gitcommit",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
