@@ -27,9 +27,18 @@ return {
     local cvt_ok, cvt = pcall(require, "codeium.virtual_text")
     luasnip.config.setup {}
 
+    local border_config = {
+      border = "single",
+      winhighlight = "Normal:NormalFloat,FloatBorder:CmpFloatBorder,CursorLine:Visual,Search:None",
+    }
+
     cmp.setup {
       snippet = {
         expand = function(args) luasnip.lsp_expand(args.body) end,
+      },
+      window = {
+        completion = cmp.config.window.bordered(border_config),
+        documentation = cmp.config.window.bordered(border_config),
       },
       preselect = cmp.PreselectMode.None,
       completion = { completeopt = "menu,menuone,noinsert,noselect" },

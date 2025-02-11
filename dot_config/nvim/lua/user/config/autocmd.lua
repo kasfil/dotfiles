@@ -310,6 +310,9 @@ aucmd("ColorScheme", {
       SagaBorder = { bg = palette.bg_dim, fg = palette.bg_dim },
       RenameNormal = { link = "NormalFloat" },
       OutlineNormal = { link = "SideWin" },
+
+      -- cmp nvim
+      CmpFloatBorder = { bg = palette.bg_dim, fg = palette.bg_dim },
     }
 
     for k, v in pairs(custom_hl) do
