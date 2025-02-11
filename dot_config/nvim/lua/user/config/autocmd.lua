@@ -235,6 +235,7 @@ aucmd("ColorScheme", {
       CursorLineNr = { fg = palette.green, bg = palette.none },
       CursorLine = { fg = palette.none, bg = palette.none },
       SideWin = { fg = palette.fg0, bg = palette.bg_dim },
+      Comment = { fg = palette.bg5, italic = true },
 
       -- Buffer and Tabline
       TabLine = { fg = palette.none, bg = palette.bg_dim },
