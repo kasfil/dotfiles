@@ -14,7 +14,7 @@ local option = {
   splitbelow = true,
   list = true,
   listchars = { tab = "» ", trail = "·", nbsp = "␣" },
-  fillchars = { eob = " ", foldopen = "", foldclose = "", foldsep = " " },
+  fillchars = { eob = " ", foldopen = "", foldclose = "", foldsep = " ", diff = "╱" },
   inccommand = "split",
   scrolloff = 10,
   sidescrolloff = 5,
