@@ -58,7 +58,11 @@ return {
     ---@module "ibl"
     ---@type ibl.config
     opts = {
-      indent = { highlight = "IblIndent", char = "▏" },
+      indent = {
+        highlight = "IblIndent",
+        char = "▏",
+        tab_char = "╎",
+      },
       scope = {
         enabled = true,
         highlight = { "IblScope" },
