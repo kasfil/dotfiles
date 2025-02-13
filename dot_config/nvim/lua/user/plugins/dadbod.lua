@@ -14,7 +14,17 @@ return {
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
-    vim.g.db_ui_winwidth = 30
+    vim.g.db_ui_winwidth = 35
     vim.g.db_ui_show_help = 0
+    vim.g.db_ui_icons = {
+      expanded = "",
+      collapsed = "",
+      saved_query = "󱪙",
+      new_query = "󱪝",
+      tables = "",
+      buffers = "",
+      connection_ok = "✓",
+      connection_error = "✕",
+    }
   end,
 }
