@@ -1,0 +1,121 @@
+## Original Author
+# URL: https://github.com/sainnhe/gruvbox-material
+# Author: sainnhe
+# License: MIT License
+
+"type" = "yellow"
+"constant" = "purple"
+"constant.numeric" = "purple"
+"constant.character.escape" = "orange"
+"string" = "green"
+"string.regexp" = "blue"
+"comment" = "grey0"
+"variable" = "fg0"
+"variable.builtin" = "blue"
+"variable.parameter" = "fg0"
+"variable.other.member" = "fg0"
+"label" = "aqua"
+"punctuation" = "grey2"
+"punctuation.delimiter" = "grey2"
+"punctuation.bracket" = "fg0"
+"keyword" = "red"
+"keyword.directive" = "aqua"
+"operator" = "orange"
+"function" = "green"
+"function.builtin" = "blue"
+"function.macro" = "aqua"
+"tag" = "yellow"
+"namespace" = "aqua"
+"attribute" = "aqua"
+"constructor" = "yellow"
+"module" = "blue"
+"special" = "orange"
+
+"markup.heading.marker" = "grey2"
+"markup.heading.1" = { fg = "red", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "orange", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "yellow", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "green", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "blue", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "fg", modifiers = ["bold"] }
+"markup.list" = "red"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
+"markup.link.text" = "purple"
+"markup.quote" = "grey2"
+"markup.raw" = "green"
+
+"diff.plus" = "green"
+"diff.delta" = "orange"
+"diff.minus" = "red"
+
+"ui.background" = { bg = "bg0" }
+"ui.background.separator" = "grey0"
+"ui.cursor" = { fg = "bg0", bg = "fg0" }
+"ui.cursor.match" = { fg = "orange", bg = "bg_visual_yellow" }
+"ui.cursor.insert" = { fg = "bg0", bg = "grey2" }
+"ui.cursor.select" = { fg = "bg0", bg = "blue" }
+"ui.cursorline.primary" = { bg = "bg1" }
+"ui.cursorline.secondary" = { bg = "bg1" }
+"ui.selection" = { bg = "bg3" }
+"ui.linenr" = "grey0"
+"ui.linenr.selected" = "fg0"
+"ui.statusline" = { fg = "fg0", bg = "bg3" }
+"ui.statusline.inactive" = { fg = "grey0", bg = "bg1" }
+"ui.statusline.normal" = { fg = "bg0", bg = "fg0", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg0", bg = "yellow", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
+"ui.popup" = { fg = "grey2", bg = "bg2" }
+"ui.window" = { fg = "grey0", bg = "bg0" }
+"ui.help" = { fg = "fg0", bg = "bg1" }
+"ui.text" = "fg0"
+"ui.text.focus" = "fg0"
+"ui.menu" = { fg = "fg0", bg = "bg2" }
+"ui.menu.selected" = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
+"ui.virtual.whitespace" = { fg = "bg4" }
+"ui.virtual.indent-guide" = { fg = "bg4" }
+"ui.virtual.ruler" = { bg = "bg3" }
+
+"hint" = "blue"
+"info" = "aqua"
+"warning" = "yellow"
+"error" = "red"
+"diagnostic" = { modifiers = ["underlined"] }
+
+[palette]
+
+bg0 = "#181818"
+bg1 = "#202020"
+bg2 = "#252525"
+bg3 = "#2D2B2A"
+bg4 = "#383634"
+bg5 = "#464442"
+bg_statusline1 = "#252525"
+bg_statusline2 = "#2e2d2c"
+bg_statusline3 = "#484644"
+bg_diff_green = "#1f2617"
+bg_visual_green = "#2a332c"
+bg_diff_red = "#2a1b1c"
+bg_visual_red = "#322526"
+bg_diff_blue = "#16252a"
+bg_visual_blue = "#253233"
+bg_visual_yellow = "#3a3325"
+bg_current_word = "#2e2d2c"
+
+fg0 = "#b9ab8f"
+fg1 = "#c4b69a"
+red = "#c56f6b"
+orange = "#c18a63"
+yellow = "#b89d6b"
+green = "#9a9f72"
+aqua = "#6f8a7e"
+blue = "#7b9590"
+purple = "#a88995"
+bg_red = "#c56f6b"
+bg_green = "#9a9f72"
+bg_yellow = "#b89d6b"
+
+grey0 = "#9c9281"
+grey1 = "#8b8273"
+grey2 = "#7a7165"
