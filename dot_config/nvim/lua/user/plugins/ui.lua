@@ -7,6 +7,11 @@ return {
     opts = {},
   },
   {
+    "petertriho/nvim-scrollbar",
+    event = { "VeryLazy" },
+    opts = {},
+  },
+  {
     "luukvbaal/statuscol.nvim",
     event = "VimEnter",
     config = function()
