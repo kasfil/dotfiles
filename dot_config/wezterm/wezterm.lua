@@ -12,12 +12,9 @@ local config = {
     { family = "Noto Color Emoji", assume_emoji_presentation = true },
   },
 
-  font_size = 12,
-  -- line_height = 1.1,
+  font_size = 10,
 
   unicode_version = 14,
-
-  dpi = 96,
 
   window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
 
