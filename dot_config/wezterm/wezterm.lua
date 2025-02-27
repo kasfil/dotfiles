@@ -135,4 +135,7 @@ smart_splits.apply_to_config(config, {
   log_level = "error",
 })
 
+local ok, companion = pcall(require, "companion")
+if ok then companion.apply_config(config) end
+
 return config
