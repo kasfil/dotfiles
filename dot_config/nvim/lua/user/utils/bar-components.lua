@@ -460,18 +460,23 @@ end
 ---Tabline conditional padding
 C.tabline_padding = function()
   return {
+    static = {
+      winft = setmetatable({
+        ["neo-tree"] = "NeoTree",
+        ["dap-repl"] = "Debug REPL",
+        ["aerial"] = "Aerial",
+        ["dbui"] = "Dadbod UI",
+      }, {
+        __index = function() return "" end,
+      }),
+    },
     condition = function(self)
       self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
       local bufnr = vim.api.nvim_win_get_buf(self.winid)
 
-      if vim.bo[bufnr].filetype == "neo-tree" then
-        self.title = "NeoTree"
-        return true
-      elseif vim.bo[bufnr].filetype == "dap-repl" then
-        self.title = "Dap Repl"
-        return true
-      elseif vim.bo[bufnr].filetype == "aerial" then
-        self.title = "Aerial"
+      local title = self.winft[vim.bo[bufnr].filetype]
+      if title ~= "" then
+        self.title = title
         return true
       end
 
