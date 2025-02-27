@@ -76,9 +76,11 @@ return {
         never_show = {
           ".DS_Store",
           "thumbs.db",
+          "__pycache__",
         },
         never_show_by_pattern = {
           ".null-ls_*",
+          "*.py[cod]", -- python binary
         },
       },
       follow_current_file = {
