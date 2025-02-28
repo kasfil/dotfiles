@@ -9,7 +9,26 @@ return {
   {
     "lewis6991/satellite.nvim",
     event = { "VeryLazy" },
-    opts = {},
+    opts = {
+      excluded_filetypes = {
+        "neo-tree",
+        "aerial",
+        "dbui",
+        "dbout",
+        "fugitive",
+        "blame",
+        "gitsigns-blame",
+        "fugitiveblame",
+        "neotest-output",
+        "neotest-output-panel",
+        "neotest-summary",
+        "qf",
+        "grug-far",
+        "dap-float",
+        "dap-repl",
+        "lspinfo",
+      },
+    },
   },
   {
     "luukvbaal/statuscol.nvim",
