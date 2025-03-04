@@ -36,6 +36,7 @@ local option = {
   sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize",
   shortmess = "ltToOCFS",
   diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram",
+  equalalways = false,
 }
 
 for k, v in pairs(option) do
