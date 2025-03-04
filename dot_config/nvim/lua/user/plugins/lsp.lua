@@ -201,6 +201,10 @@ return {
       if vim.fn.executable "go" == 1 then vim.list_extend(ensure_installed, { "revive", "delve" }) end
       -- Rust
       if vim.fn.executable "cargo" == 1 then vim.list_extend(ensure_installed, { "codelldb" }) end
+      -- PHP
+      if vim.fn.executable "php" == 1 then
+        vim.list_extend(ensure_installed, { "phpactor", "intelephense", "phpcs", "php-cs-fixer" })
+      end
 
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
