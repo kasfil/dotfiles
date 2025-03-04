@@ -5,6 +5,7 @@ return {
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
   },
+  enabled = function() return vim.fn.executable "go" == 1 end,
   ft = { "go", "gomod" },
   build = ':lua require("go.install").update_all()', -- if you need to install/update all binaries
   opts = {
