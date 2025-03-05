@@ -14,11 +14,28 @@ return {
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
+    vim.g.db_ui_use_nvim_notify = 1
     vim.g.db_ui_winwidth = 35
     vim.g.db_ui_show_help = 0
     vim.g.db_ui_icons = {
-      expanded = "",
-      collapsed = "",
+      expanded = {
+        db = " ",
+        buffers = " ",
+        saved_queries = " ",
+        schemas = " ",
+        schema = " 󰓹",
+        tables = " ",
+        table = " ",
+      },
+      collapsed = {
+        db = " ",
+        buffers = " ",
+        saved_queries = " 󰴉",
+        schemas = " ",
+        schema = " 󰓹",
+        tables = " ",
+        table = " ",
+      },
       saved_query = "󱪙",
       new_query = "󱪝",
       tables = "",
