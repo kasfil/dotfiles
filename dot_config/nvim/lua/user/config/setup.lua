@@ -31,4 +31,3 @@ local opts = {
 }
 
 require("lazy").setup("user.plugins", opts)
-vim.notify = require "notify"

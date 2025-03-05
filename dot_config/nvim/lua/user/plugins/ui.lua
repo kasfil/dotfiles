@@ -99,6 +99,13 @@ return {
     "rcarriga/nvim-notify",
     lazy = false,
     opts = { render = "wrapped-compact" },
+    config = function(_, opts)
+      local notify = require "notify"
+      notify.setup(opts)
+
+      -- attemp to replace neovim default notification
+      vim.notify = notify
+    end,
   },
   {
     "stevearc/quicker.nvim",
