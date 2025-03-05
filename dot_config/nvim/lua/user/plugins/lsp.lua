@@ -388,7 +388,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         -- Conform can also run multiple formatters sequentially
-        python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
+        python = { "ruff_organize_imports", "ruff_fix", "ruff_format", "black", "isort" },
         go = { "goimports" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
