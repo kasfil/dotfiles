@@ -57,9 +57,16 @@ return {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPost" },
     opts = {
-      render = "virtual",
+      render = "background",
       virtual_symbol = "█",
     },
+    config = function(_, opts)
+      require("nvim-highlight-colors").setup {
+        render = "background",
+        enable_named_colors = false,
+      }
+      require("nvim-highlight-colors").turnOff()
+    end,
   },
 
   {
