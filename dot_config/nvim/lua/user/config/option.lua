@@ -13,7 +13,7 @@ local option = {
   splitright = true,
   splitbelow = true,
   list = true,
-  listchars = { tab = "» ", trail = "·", nbsp = "␣" },
+  listchars = { tab = "  ", trail = "·", nbsp = "␣" },
   fillchars = { eob = " ", foldopen = "", foldclose = "", foldsep = " ", diff = "╱" },
   inccommand = "split",
   scrolloff = 10,
@@ -37,6 +37,7 @@ local option = {
   shortmess = "ltToOCFS",
   diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram",
   equalalways = false,
+  exrc = true,
 }
 
 for k, v in pairs(option) do
