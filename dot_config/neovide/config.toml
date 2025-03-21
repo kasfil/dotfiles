@@ -3,9 +3,7 @@ maximized = true
 
 [font]
 normal = [
-    { family = "Iosevkasf" },
-    { family = "JetBrains Mono" },
-    { family = "Intel One Mono", style = "Regular" },
+    { family = "JetBrainsMono NFP" },
     "Symbols Nerd Font",
     "Noto Color Emoji",
 ]
@@ -15,5 +13,11 @@ hinting = "full"
 allow_float_size = true
 size = 12
 
+
 [font.features]
-"JetBrains Mono" = ["+zero", "+cv06", "+cv07", "+ss19", "+ss16"]
+"JetBrainsMono NFP" = ["+zero", "+cv06", "+cv07", "+ss19"]
+
+[box-drawing]
+type = "native"
+thickness-multipliers = [0.25, 0.5, 0.75]
+stroke-width-ratio = 0.15
