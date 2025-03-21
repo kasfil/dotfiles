@@ -38,6 +38,7 @@ local option = {
   diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram",
   equalalways = false,
   exrc = true,
+  pumheight = 7,
 }
 
 for k, v in pairs(option) do

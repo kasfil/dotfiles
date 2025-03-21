@@ -194,6 +194,19 @@ aucmd("BufReadPost", {
   end,
 })
 
+aucmd("FileType", {
+  group = augroup "sqlfile",
+  desc = "Add vim-dadbod-completion to cmp",
+  pattern = { "sql", "mysql", "plsql" },
+  callback = function(_)
+    require("cmp").setup.buffer {
+      sources = {
+        { name = "vim-dadbod-completion" },
+      },
+    }
+  end,
+})
+
 aucmd({ "CursorMoved", "CursorMovedI", "WinScrolled" }, {
   desc = "Fix scrolloff when you are at the EOF",
   group = augroup "ScrollEOF",

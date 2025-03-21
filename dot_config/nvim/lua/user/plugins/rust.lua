@@ -62,6 +62,8 @@ return {
           require("which-key").add(wk_format)
         end,
       }
+      -- Include crates in cmp completion source
+      require("crates.completion.cmp").setup()
     end,
   },
 }
