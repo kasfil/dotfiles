@@ -1,6 +1,7 @@
 local wezterm = require "wezterm"
 local action = wezterm.action
 local smart_splits = wezterm.plugin.require "https://github.com/mrjones2014/smart-splits.nvim"
+local gpus = wezterm.gui.enumerate_gpus()
 
 local config = {
   enable_wayland = false,
@@ -17,8 +18,14 @@ local config = {
   line_height = 1.1,
   cell_width = 1,
 
+  animation_fps = 1,
+
   anti_alias_custom_block_glyphs = false,
   freetype_load_target = "HorizontalLcd",
+
+  front_end = "OpenGL",
+  webgpu_preferred_adapter = gpus[1],
+  webgpu_power_preference = "HighPerformance",
 
   unicode_version = 14,
 
