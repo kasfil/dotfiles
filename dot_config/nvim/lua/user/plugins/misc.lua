@@ -24,6 +24,10 @@ return {
           "fugitive",
           "aerial",
           "neo-tree",
+          "sagafinder",
+          "sagatypehierarchy",
+          "sagacallhierarchy",
+          "sagadiagnostic",
         },
       }
     end,
