@@ -3,7 +3,7 @@ maximized = true
 
 [font]
 normal = [
-    { family = "JetBrainsMono NFP" },
+    { family = "Typekasf Nerd Font Propo" },
     "Symbols Nerd Font",
     "Noto Color Emoji",
 ]
@@ -13,11 +13,12 @@ hinting = "full"
 allow_float_size = true
 size = 12
 
-
 [font.features]
-"JetBrainsMono NFP" = ["+zero", "+cv06", "+cv07", "+ss19"]
+"JetBrainsMono NFP" = ["+zero", "+cv06", "+cv07", "+ss19", "-calt"]
+"0xProto Nerd Font Propo" = ["+ss01"]
 
 [box-drawing]
-type = "native"
-thickness-multipliers = [0.25, 0.5, 0.75]
-stroke-width-ratio = 0.15
+mode = "native"
+
+[box-drawing.sizes]
+default = [1, 2]  # Thin and thick values respectively, below 12px

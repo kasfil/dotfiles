@@ -8,7 +8,7 @@ local config = {
   default_prog = { "/bin/bash" },
 
   font = wezterm.font_with_fallback {
-    { family = "JetBrainsMono NFP", harfbuzz_features = { "ss19=1", "cv06=1", "cv07=1", "zero=1" } },
+    { family = "JetBrainsMono NFP", harfbuzz_features = { "ss19=1", "cv06=1", "cv07=1", "zero=1", "calt=0" } },
     { family = "Symbols Nerd Font" },
     { family = "Noto Color Emoji", assume_emoji_presentation = true },
   },
