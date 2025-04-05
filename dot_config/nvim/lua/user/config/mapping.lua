@@ -152,4 +152,10 @@ return {
     function() require("smart-splits").swap_buf_right() end,
     desc = "Swap window right",
   },
+
+  {
+    "<S-CR>",
+    function() MiniJump2d.start(MiniJump2d.builtin_opts.query) end,
+    desc = "Jump Search",
+  },
 }

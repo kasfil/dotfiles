@@ -327,6 +327,10 @@ aucmd("ColorScheme", {
 
       -- cmp nvim
       CmpFloatBorder = { bg = palette.bg_dim, fg = palette.bg_dim },
+
+      -- Mini nvim
+      MiniJump2dSpot = { bg = palette.orange, fg = palette.bg0, bold = true },
+      MiniJump2dSpotUnique = { link = "MiniJump2dSpot" },
     }
 
     for k, v in pairs(custom_hl) do
