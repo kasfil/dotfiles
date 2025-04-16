@@ -11,6 +11,7 @@ return {
 
     -- Add your own debuggers here
     "leoluz/nvim-dap-go",
+    "mfussenegger/nvim-dap-python",
 
     -- Json5 Support
     { "Joakker/lua-json5", build = "./install.sh" },
@@ -62,44 +63,32 @@ return {
       },
       {
         "<F5>",
-        function()
-          dap.continue()
-        end,
+        function() dap.continue() end,
         desc = "Start / Continue",
       },
       {
         "<F1>",
-        function()
-          dap.step_into()
-        end,
+        function() dap.step_into() end,
         desc = "Step into",
       },
       {
         "<F2>",
-        function()
-          dap.step_over()
-        end,
+        function() dap.step_over() end,
         desc = "Step over",
       },
       {
         "<F3>",
-        function()
-          dap.step_out()
-        end,
+        function() dap.step_out() end,
         desc = "Step out",
       },
       {
         "<F7>",
-        function()
-          dapui.toggle()
-        end,
+        function() dapui.toggle() end,
         desc = "Toggle UI",
       },
       {
         "<leader>db",
-        function()
-          dap.toggle_breakpoint()
-        end,
+        function() dap.toggle_breakpoint() end,
         desc = "Toggle breakpoint",
       },
       {
@@ -112,70 +101,52 @@ return {
       },
       {
         "<leader>dC",
-        function()
-          dap.clear_breakpoints()
-        end,
+        function() dap.clear_breakpoints() end,
         desc = "Clear breakpoint",
       },
       {
         mode = { "n", "v" },
         "<leader>dh",
-        function()
-          widgets.hover()
-        end,
+        function() widgets.hover() end,
         desc = "Hover variable",
       },
       {
         mode = { "n", "v" },
         "<leader>dp",
-        function()
-          widgets.preview()
-        end,
+        function() widgets.preview() end,
         desc = "Preview",
       },
       {
         mode = { "n", "v" },
         "<leader>de",
-        function()
-          require("dapui").eval()
-        end,
+        function() require("dapui").eval() end,
         desc = "Debug evaluate",
       },
       { mode = "n", "<leader>du", group = "Window" },
       {
         mode = "n",
         "<leader>dur",
-        function()
-          dap.repl.toggle(default_winopts)
-        end,
+        function() dap.repl.toggle(default_winopts) end,
         desc = "REPL Toggle",
       },
       {
         "<leader>duv",
-        function()
-          widgets.centered_float(widgets.scopes)
-        end,
+        function() widgets.centered_float(widgets.scopes) end,
         desc = "Open scopes",
       },
       {
         "<leader>dus",
-        function()
-          widgets.centered_float(widgets.sessions)
-        end,
+        function() widgets.centered_float(widgets.sessions) end,
         desc = "Open sessions",
       },
       {
         "<leader>duf",
-        function()
-          widgets.centered_float(widgets.frames)
-        end,
+        function() widgets.centered_float(widgets.frames) end,
         desc = "Open frames",
       },
       {
         "<leader>due",
-        function()
-          widgets.centered_float(widgets.expression)
-        end,
+        function() widgets.centered_float(widgets.expression) end,
         desc = "Open expression",
       },
     }
@@ -201,6 +172,8 @@ return {
         },
       },
     }
+
+    require("dap-python").setup "python"
 
     -- Install golang specific config
     require("dap-go").setup {
