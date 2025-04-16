@@ -13,7 +13,12 @@ return { -- Collection of various small independent plugins/modules
 
     require("mini.bufremove").setup()
 
-    require("mini.jump2d").setup { view = { dim = true } }
+    require("mini.jump2d").setup {
+      view = { dim = true },
+      mapping = {
+        start_jumping = "",
+      },
+    }
 
     local sessions = {
       { name = "Load session", action = "SessionLoad", section = "Session" },

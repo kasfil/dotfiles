@@ -153,9 +153,15 @@ return {
     desc = "Swap window right",
   },
 
+  -- Minijump2d
   {
     "<S-CR>",
     function() MiniJump2d.start(MiniJump2d.builtin_opts.query) end,
     desc = "Jump Search",
+  },
+  {
+    "<CR>",
+    function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end,
+    desc = "Jump to char",
   },
 }

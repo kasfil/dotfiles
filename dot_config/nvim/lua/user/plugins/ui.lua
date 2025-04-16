@@ -85,7 +85,7 @@ return {
       indent = {
         highlight = "IblIndent",
         char = "▏",
-        tab_char = "╎",
+        tab_char = "║",
       },
       scope = {
         enabled = true,
