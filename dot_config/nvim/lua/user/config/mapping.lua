@@ -74,13 +74,12 @@ return {
         end
       end
     end,
-    desc = "Vacuum",
+    desc = "Vacuum hidden",
   },
-  {
-    "<leader>bp",
-    function() require("user.utils.bufline").picker() end,
-    desc = "Pick buffer",
-  },
+  { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close left" },
+  { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close right" },
+  { "<leader>bp", "<Cmd>BufferLinePick<CR>", desc = "Pick buffer" },
+  { "<leader>bq", "<Cmd>BufferLinePickClose<CR>", desc = "Pick close" },
 
   -- Window group
   { "<leader>w", ":w!<CR>", desc = "Write buffer" },

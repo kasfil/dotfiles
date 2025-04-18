@@ -18,19 +18,11 @@ return {
             or vim.tbl_contains(ft, vim.bo[args.buf].filetype)
         end,
       },
-      tabline = { -- UI upper bar
-        comp.tabline_padding(),
-        comp.tabfiles(),
-        comp.fill(),
-        comp.tabnu(),
-      },
       winbar = { -- UI breadcrumbs bar
         fallthrough = false,
         -- Inactive winbar
         {
-          condition = function()
-            return not conditions.is_active()
-          end,
+          condition = function() return not conditions.is_active() end,
           {
             comp.space { length = 2 },
             comp.file_name(),
