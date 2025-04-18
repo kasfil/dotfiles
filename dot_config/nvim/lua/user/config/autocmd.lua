@@ -307,6 +307,7 @@ aucmd("ColorScheme", {
       DapBreakpoint = { fg = palette.red },
       DapLogPoint = { fg = palette.yellow },
       DapStopped = { fg = palette.green },
+      debugPC = { bg = palette.bg1, fg = palette.none, inherit = "debugPC" },
 
       -- Telescope
       TelescopePromptPrefix = { fg = palette.red, bg = palette.bg1 },
@@ -331,9 +332,6 @@ aucmd("ColorScheme", {
       -- Mini nvim
       MiniJump2dSpot = { bg = palette.orange, fg = palette.bg0, bold = true },
       MiniJump2dSpotUnique = { link = "MiniJump2dSpot" },
-
-      -- Nvim dap
-      debugPC = { bg = palette.bg1, fg = palette.none, inherit = "debugPC" },
     }
 
     for k, v in pairs(custom_hl) do
