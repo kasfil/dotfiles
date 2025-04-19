@@ -263,40 +263,41 @@ aucmd("ColorScheme", {
 
       -- winbar
       Winbar = { fg = palette.fg0, bg = palette.bg2 },
+      WinbarNC = { link = "Winbar" },
 
       -- treesitter-context
       TreesitterContext = { fg = palette.fg0, bg = palette.bg1 },
       TreesitterContextLineNumber = { fg = palette.bg5, bg = palette.bg1 },
 
       -- navic
-      NavicIconsFile = { bg = palette.bg_statusline1, inherit = "NavicIconsFile" },
-      NavicIconsModule = { bg = palette.bg_statusline1, inherit = "NavicIconsModule" },
-      NavicIconsNamespace = { bg = palette.bg_statusline1, inherit = "NavicIconsNamespace" },
-      NavicIconsPackage = { bg = palette.bg_statusline1, inherit = "NavicIconsPackage" },
-      NavicIconsClass = { bg = palette.bg_statusline1, inherit = "NavicIconsClass" },
-      NavicIconsMethod = { bg = palette.bg_statusline1, inherit = "NavicIconsMethod" },
-      NavicIconsProperty = { bg = palette.bg_statusline1, inherit = "NavicIconsProperty" },
-      NavicIconsField = { bg = palette.bg_statusline1, inherit = "NavicIconsField" },
-      NavicIconsConstructor = { bg = palette.bg_statusline1, inherit = "NavicIconsConstructor" },
-      NavicIconsEnum = { bg = palette.bg_statusline1, inherit = "NavicIconsEnum" },
-      NavicIconsInterface = { bg = palette.bg_statusline1, inherit = "NavicIconsInterface" },
-      NavicIconsFunction = { bg = palette.bg_statusline1, inherit = "NavicIconsFunction" },
-      NavicIconsVariable = { bg = palette.bg_statusline1, inherit = "NavicIconsVariable" },
-      NavicIconsConstant = { bg = palette.bg_statusline1, inherit = "NavicIconsConstant" },
-      NavicIconsString = { bg = palette.bg_statusline1, inherit = "NavicIconsString" },
-      NavicIconsNumber = { bg = palette.bg_statusline1, inherit = "NavicIconsNumber" },
-      NavicIconsBoolean = { bg = palette.bg_statusline1, inherit = "NavicIconsBoolean" },
-      NavicIconsArray = { bg = palette.bg_statusline1, inherit = "NavicIconsArray" },
-      NavicIconsObject = { bg = palette.bg_statusline1, inherit = "NavicIconsObject" },
-      NavicIconsKey = { bg = palette.bg_statusline1, inherit = "NavicIconsKey" },
-      NavicIconsNull = { bg = palette.bg_statusline1, inherit = "NavicIconsNull" },
-      NavicIconsEnumMember = { bg = palette.bg_statusline1, inherit = "NavicIconsEnumMember" },
-      NavicIconsStruct = { bg = palette.bg_statusline1, inherit = "NavicIconsStruct" },
-      NavicIconsEvent = { bg = palette.bg_statusline1, inherit = "NavicIconsEvent" },
-      NavicIconsOperator = { bg = palette.bg_statusline1, inherit = "NavicIconsOperator" },
-      NavicIconsTypeParameter = { bg = palette.bg_statusline1, inherit = "NavicIconsTypeParameter" },
-      NavicText = { bg = palette.bg_statusline1, inherit = "NavicText" },
-      NavicSeparator = { bg = palette.bg_statusline1, inherit = "NavicSeparator" },
+      NavicIconsFile = { bg = palette.bg2, inherit = "NavicIconsFile" },
+      NavicIconsModule = { bg = palette.bg2, inherit = "NavicIconsModule" },
+      NavicIconsNamespace = { bg = palette.bg2, inherit = "NavicIconsNamespace" },
+      NavicIconsPackage = { bg = palette.bg2, inherit = "NavicIconsPackage" },
+      NavicIconsClass = { bg = palette.bg2, inherit = "NavicIconsClass" },
+      NavicIconsMethod = { bg = palette.bg2, inherit = "NavicIconsMethod" },
+      NavicIconsProperty = { bg = palette.bg2, inherit = "NavicIconsProperty" },
+      NavicIconsField = { bg = palette.bg2, inherit = "NavicIconsField" },
+      NavicIconsConstructor = { bg = palette.bg2, inherit = "NavicIconsConstructor" },
+      NavicIconsEnum = { bg = palette.bg2, inherit = "NavicIconsEnum" },
+      NavicIconsInterface = { bg = palette.bg2, inherit = "NavicIconsInterface" },
+      NavicIconsFunction = { bg = palette.bg2, inherit = "NavicIconsFunction" },
+      NavicIconsVariable = { bg = palette.bg2, inherit = "NavicIconsVariable" },
+      NavicIconsConstant = { bg = palette.bg2, inherit = "NavicIconsConstant" },
+      NavicIconsString = { bg = palette.bg2, inherit = "NavicIconsString" },
+      NavicIconsNumber = { bg = palette.bg2, inherit = "NavicIconsNumber" },
+      NavicIconsBoolean = { bg = palette.bg2, inherit = "NavicIconsBoolean" },
+      NavicIconsArray = { bg = palette.bg2, inherit = "NavicIconsArray" },
+      NavicIconsObject = { bg = palette.bg2, inherit = "NavicIconsObject" },
+      NavicIconsKey = { bg = palette.bg2, inherit = "NavicIconsKey" },
+      NavicIconsNull = { bg = palette.bg2, inherit = "NavicIconsNull" },
+      NavicIconsEnumMember = { bg = palette.bg2, inherit = "NavicIconsEnumMember" },
+      NavicIconsStruct = { bg = palette.bg2, inherit = "NavicIconsStruct" },
+      NavicIconsEvent = { bg = palette.bg2, inherit = "NavicIconsEvent" },
+      NavicIconsOperator = { bg = palette.bg2, inherit = "NavicIconsOperator" },
+      NavicIconsTypeParameter = { bg = palette.bg2, inherit = "NavicIconsTypeParameter" },
+      NavicText = { bg = palette.bg2, inherit = "NavicText" },
+      NavicSeparator = { bg = palette.bg2, inherit = "NavicSeparator" },
 
       -- grugfar
       GrugFarResultsMatch = { bg = palette.bg_visual_green, fg = palette.none },
@@ -332,6 +333,13 @@ aucmd("ColorScheme", {
       -- Mini nvim
       MiniJump2dSpot = { bg = palette.orange, fg = palette.bg0, bold = true },
       MiniJump2dSpotUnique = { link = "MiniJump2dSpot" },
+
+      -- Bufferline nvim
+      fill = { link = "TabLine" },
+      buffer_visible = { link = "BufferActive" },
+      buffer_active = { link = "BufferActive" },
+      indicator_active = { link = "BufferActiveSep" },
+      indicator_visible = { link = "BufferActiveSep" },
     }
 
     for k, v in pairs(custom_hl) do
