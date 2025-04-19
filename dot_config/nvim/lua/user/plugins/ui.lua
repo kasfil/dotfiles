@@ -120,7 +120,7 @@ return {
     opts = function()
       local palette = vim.g.override_palette
       local base_bg = palette.bg0[1]
-      local bg_active = palette.bg_visual_blue[1]
+      local bg_active = palette.bg3[1]
       local fg_active = palette.fg0[1]
       local bg_passive = palette.bg1[1]
       local fg_passive = palette.bg5[1]
@@ -226,6 +226,18 @@ return {
           },
           modified_selected = {
             fg = palette["yellow"][1],
+            bg = bg_active,
+          },
+          pick = {
+            fg = palette["red"][1],
+            bg = bg_passive,
+          },
+          pick_visible = {
+            fg = palette["red"][1],
+            bg = bg_active,
+          },
+          pick_selected = {
+            fg = palette["red"][1],
             bg = bg_active,
           },
         },

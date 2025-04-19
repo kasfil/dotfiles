@@ -9,7 +9,7 @@ return {
         change = { text = "┃" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
-        changedelete = { text = "~" },
+        changedelete = { text = "┃" },
         untracked = { text = "┆" },
       },
       signs_staged = {
@@ -17,7 +17,7 @@ return {
         change = { text = "┃" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
-        changedelete = { text = "~" },
+        changedelete = { text = "┃" },
         untracked = { text = "┆" },
       },
       on_attach = function(bufnr)
