@@ -5,19 +5,19 @@ return {
     event = { "BufReadPost" },
     opts = {
       signs = {
-        add = { text = "┃" },
-        change = { text = "┃" },
+        add = { text = "▍" },
+        change = { text = "▍" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
-        changedelete = { text = "┃" },
+        changedelete = { text = "▍" },
         untracked = { text = "┆" },
       },
       signs_staged = {
-        add = { text = "┃" },
-        change = { text = "┃" },
+        add = { text = "▍" },
+        change = { text = "▍" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
-        changedelete = { text = "┃" },
+        changedelete = { text = "▍" },
         untracked = { text = "┆" },
       },
       on_attach = function(bufnr)

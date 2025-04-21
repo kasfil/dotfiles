@@ -119,7 +119,7 @@ return {
     version = "*",
     opts = function()
       local palette = vim.g.override_palette
-      local base_bg = palette.bg0[1]
+      local base_bg = palette.bg_dim[1]
       local bg_active = palette.bg3[1]
       local fg_active = palette.fg0[1]
       local bg_passive = palette.bg1[1]
@@ -133,7 +133,8 @@ return {
           right_mouse_command = function(bufnum) _G.MiniBufremove.delete(bufnum, false) end,
           left_mouse_command = "buffer %d",
           indicator = {
-            style = "none",
+            style = "icon",
+            icon = "🮌",
           },
           offsets = {
             {
@@ -166,7 +167,7 @@ return {
             local icon, hl, _ = _G.MiniIcons.get("filetype", element.filetype)
             return icon, hl
           end,
-          separator_style = "slope",
+          separator_style = { " ", " " },
         },
         highlights = {
           fill = { bg = base_bg },
@@ -192,17 +193,17 @@ return {
             italic = false,
             bold = true,
           },
-          separator = {
-            bg = bg_passive,
-            fg = base_bg,
-          },
           separator_selected = {
-            bg = bg_active,
-            fg = base_bg,
+            fg = palette["blue"][1],
+            bg = base_bg,
           },
           separator_visible = {
-            bg = bg_active,
+            fg = bg_active,
+            bg = base_bg,
+          },
+          separator = {
             fg = base_bg,
+            bg = base_bg,
           },
           close_button = {
             fg = palette["bg5"][1],
@@ -231,13 +232,40 @@ return {
           pick = {
             fg = palette["red"][1],
             bg = bg_passive,
+            italic = false,
           },
           pick_visible = {
             fg = palette["red"][1],
             bg = bg_active,
+            italic = false,
           },
           pick_selected = {
             fg = palette["red"][1],
+            bg = bg_active,
+            italic = false,
+          },
+          duplicate = {
+            fg = fg_passive,
+            bg = bg_passive,
+          },
+          duplicate_selected = {
+            fg = fg_active,
+            bg = bg_active,
+            italic = false,
+            bold = true,
+          },
+          duplicate_visible = {
+            fg = fg_active,
+            bg = bg_active,
+            italic = false,
+            bold = true,
+          },
+          indicator_visible = {
+            fg = palette.yellow[1],
+            bg = bg_active,
+          },
+          indicator_selected = {
+            fg = palette.blue[1],
             bg = bg_active,
           },
         },

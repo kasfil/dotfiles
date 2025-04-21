@@ -250,12 +250,14 @@ aucmd("ColorScheme", {
       Comment = { fg = palette.bg5, italic = true },
 
       -- Buffer and Tabline
-      TabLine = { fg = palette.none, bg = palette.bg_dim },
-      BufferActive = { fg = palette.fg0, bg = palette.bg_statusline2, bold = true },
+      TabLine = { fg = palette.none, bg = palette.bg0 },
+      BufferActive = { fg = palette.fg0, bg = palette.bg3, bold = true },
       BufferActiveSep = { fg = palette.blue, bg = palette.bg_statusline2 },
-      BufferInactive = { fg = palette.bg5, bg = palette.bg0 },
-      BufferInactiveSep = { fg = palette.bg_dim, bg = palette.bg0 },
+      BufferInactive = { fg = palette.bg5, bg = palette.bg1 },
+      BufferInactiveSep = { fg = palette.bg0, bg = palette.bg1 },
       TabLineFill = { link = "TabLine" },
+
+      GitSignsChange = { link = "OrangeSign" },
 
       -- Indent
       IblIndent = { fg = palette.bg1, bg = palette.none },
@@ -333,14 +335,14 @@ aucmd("ColorScheme", {
       -- Mini nvim
       MiniJump2dSpot = { bg = palette.orange, fg = palette.bg0, bold = true },
       MiniJump2dSpotUnique = { link = "MiniJump2dSpot" },
-
-      -- Bufferline nvim
-      fill = { link = "TabLine" },
-      buffer_visible = { link = "BufferActive" },
-      buffer_active = { link = "BufferActive" },
-      indicator_active = { link = "BufferActiveSep" },
-      indicator_visible = { link = "BufferActiveSep" },
     }
+
+    -- Bufferline Icons hl
+    local colors = { "Yellow", "Purple", "Orange", "Green", "Azure", "Grey", "Cyan", "Blue", "Red" }
+    for _, color in ipairs(colors) do
+      local hlname = "MiniIcons" .. color
+      custom_hl["Bufferline" .. hlname] = { bg = palette.bg1, fg = palette.bg5 }
+    end
 
     for k, v in pairs(custom_hl) do
       apply_hl(k, v)
