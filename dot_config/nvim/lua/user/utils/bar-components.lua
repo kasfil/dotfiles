@@ -235,7 +235,7 @@ C.codeium = function()
   return {
     hl = "GreenBold",
     condition = function()
-      if pcall(require, "codeium") then return pcall(require, "codeium.virtual_text") end
+      if require("user.utils").is_loaded "codeium.nvim" then return pcall(require, "codeium.virtual_text") end
     end,
     provider = function()
       local ok, cvt = pcall(require, "codeium.virtual_text")

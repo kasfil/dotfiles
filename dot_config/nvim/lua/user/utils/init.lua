@@ -41,4 +41,8 @@ M.apply_map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+M.is_loaded = function(plugin_name)
+  return vim.tbl_get(require "lazy.core.config", "plugins", plugin_name, "_", "loaded") ~= nil
+end
+
 return M
