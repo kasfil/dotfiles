@@ -5,8 +5,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre" },
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      "williamboman/mason-lspconfig.nvim",
+      { "mason-org/mason.nvim", config = true },
+      "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "b0o/schemastore.nvim",
       { "j-hui/fidget.nvim", opts = {} },
@@ -140,85 +140,27 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-      local servers = {
-        -- Python
-        basedpyright = {},
-        ruff = {
-          init_options = {
-            settings = {
-              lineLength = 100,
-              organizeImports = true,
-              logLevel = "error",
-            },
-          },
-        },
-
-        -- Lua
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = { disable = { "missing-fields" }, globals = { "Snacks" } },
-              hint = {
-                enable = true,
-                arrayIndex = "Disable",
-              },
-            },
-          },
-        },
-
-        jsonls = {
-          settings = {
-            json = {
-              schemas = require("schemastore").json.schemas(),
-              validate = { enable = true },
-            },
-          },
-        },
-
-        yamlls = {
-          settings = {
-            yaml = {
-              schemaStore = {
-                enable = false,
-                url = "",
-              },
-              schemas = require("schemastore").yaml.schemas(),
-            },
-          },
-        },
-      }
-
       require("mason").setup()
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, { "stylua", "debugpy" })
-
-      -- install additional tool based on language tool existance
-      -- Go-lang
-      if vim.fn.executable "go" == 1 then vim.list_extend(ensure_installed, { "revive", "delve" }) end
-      -- Rust
-      if vim.fn.executable "cargo" == 1 then vim.list_extend(ensure_installed, { "codelldb" }) end
-      -- PHP
-      if vim.fn.executable "php" == 1 then
-        vim.list_extend(ensure_installed, { "phpactor", "intelephense", "phpcs", "php-cs-fixer" })
-      end
+      local ensure_installed = {
+        "basedpyright",
+        "jsonls",
+        "lua_ls",
+        "ruff",
+        "yamlls",
+        "stylua",
+        "debugpy",
+        { "gopls", "revive", "delve", conditions = function() return not os.execute "go version" end },
+        { "codelldb", conditions = function() return not os.execute "cargo version" end },
+      }
 
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
       require("mason-lspconfig").setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-          ["rust_analyzer"] = function() end,
+        automatic_enabled = {
+          exclude = {
+            "rust_analyzer",
+          },
         },
       }
     end,
@@ -231,7 +173,10 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      symbol_in_winbar = { enable = false },
+      symbol_in_winbar = {
+        enable = false,
+        folder_level = 0,
+      },
       outline = {
         detail = false,
         win_width = 45,
