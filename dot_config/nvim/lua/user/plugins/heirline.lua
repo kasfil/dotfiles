@@ -24,7 +24,8 @@ return {
         {
           condition = function() return not conditions.is_active() end,
           {
-            comp.space { length = 2 },
+            comp.space(),
+            comp.file_icon(),
             comp.file_name(),
           },
         },
