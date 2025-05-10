@@ -9,6 +9,7 @@ return {
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "b0o/schemastore.nvim",
+      "jay-babu/mason-nvim-dap.nvim",
       { "j-hui/fidget.nvim", opts = {} },
       { "Bilal2453/luvit-meta", lazy = true },
       {
@@ -157,12 +158,14 @@ return {
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
       require("mason-lspconfig").setup {
-        automatic_enabled = {
+        automatic_enable = {
           exclude = {
             "rust_analyzer",
           },
         },
       }
+
+      require("mason-nvim-dap").setup()
     end,
   },
   {
