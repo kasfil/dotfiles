@@ -21,6 +21,7 @@ return {
     local dapui = require "dapui"
     local widgets = require "dap.ui.widgets"
     local get_icon = require("user.utils").get_icon
+    local debug_utils = require "user.utils.debugger"
 
     -- enable json5 support
     require("dap.ext.vscode").json_decode = require("json5").parse
@@ -182,6 +183,16 @@ return {
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
         detached = vim.fn.has "win32" == 0,
       },
+    }
+
+    dap.adapters.lldb = {
+      type = "executable",
+      command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+      enrich_config = function(config, on_config)
+        -- If the configuration(s) in `launch.json` contains a `cargo` section
+        -- send the configuration off to the cargo_inspector.
+        if config["cargo"] ~= nil then on_config(debug_utils.cargo_inspector(config)) end
+      end,
     }
   end,
 }
