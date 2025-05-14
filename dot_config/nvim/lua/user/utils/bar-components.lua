@@ -83,6 +83,7 @@ C.mode = function(opts)
       }),
     },
     provider = function(self) return "[" .. self.mode_name[vim.fn.mode()] .. "]" end,
+    hl = "LineNr",
     update = {
       "ModeChanged",
       pattern = "*:*",
@@ -108,7 +109,22 @@ end
 C.file_name = function(opts)
   return extend_opts({
     init = function(self) self.filename = vim.api.nvim_buf_get_name(0) end,
+    hl = "GreenBold",
     provider = function(self) return vim.fn.fnamemodify(self.filename, ":p:t") end,
+  }, opts)
+end
+
+C.file_path = function(opts)
+  return extend_opts({
+    provider = function()
+      local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.:h")
+      if path ~= "" then
+        return get_icon "folder_open" .. " " .. path
+      else
+        return get_icon "folder_open" .. " Working dir"
+      end
+    end,
+    hl = "LineNr",
   }, opts)
 end
 
@@ -129,21 +145,20 @@ C.diagnostics = function(opts)
       self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
       self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     end,
-    { provider = " " },
     {
-      provider = function(self) return self.errors > 0 and (self.err_icon .. self.errors .. " ") end,
+      provider = function(self) return self.errors > 0 and (" " .. self.err_icon .. self.errors) end,
       hl = "DiagnosticError",
     },
     {
-      provider = function(self) return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ") end,
+      provider = function(self) return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings) end,
       hl = "DiagnosticWarn",
     },
     {
-      provider = function(self) return self.info > 0 and (self.info_icon .. self.info .. " ") end,
+      provider = function(self) return self.info > 0 and (" " .. self.info_icon .. self.info) end,
       hl = "DiagnosticInfo",
     },
     {
-      provider = function(self) return self.hints > 0 and (self.hint_icon .. self.hints .. " ") end,
+      provider = function(self) return self.hints > 0 and (" " .. self.hint_icon .. self.hints) end,
       hl = "DiagnosticHint",
     },
   }, opts)
@@ -160,10 +175,11 @@ C.git = function(opts)
     end,
     {
       provider = " " .. get_icon "git_branch" .. " ",
-      hl = "BlueSign",
+      hl = "RedSign",
     },
     {
       provider = function(self) return self.status.head end,
+      hl = "RedSign",
     },
     {
       condition = function(self) return self.modified end,
@@ -235,7 +251,11 @@ C.codeium = function()
   return {
     hl = "GreenBold",
     condition = function()
-      if require("user.utils").is_loaded "codeium.nvim" then return pcall(require, "codeium.virtual_text") end
+      if require("user.utils").is_loaded "codeium.nvim" then
+        return pcall(require, "codeium.virtual_text")
+      else
+        return false
+      end
     end,
     provider = function()
       local ok, cvt = pcall(require, "codeium.virtual_text")
