@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+vim.g.winborder = "single"
 
 vim.g.override_palette = {
   -- stylua: ignore start
