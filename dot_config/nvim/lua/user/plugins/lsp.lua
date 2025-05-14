@@ -152,7 +152,7 @@ return {
         "stylua",
         "debugpy",
         { "gopls", "revive", "delve", conditions = function() return not os.execute "go version" end },
-        { "codelldb", conditions = function() return not os.execute "cargo version" end },
+        { "codelldb", "rust_analyzer", conditions = function() return not os.execute "cargo version" end },
       }
 
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
