@@ -18,8 +18,8 @@ return {
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     npairs.add_rules {
-      Rule("<", ">", { "rust", "rs" }),
-      Rule("|", "|", { "rust", "rs" }):with_pair(cond.before_text "("):with_move(cond.done()),
+      Rule("<", ">", { "rust", "rs" }):with_move(cond.done()),
+      Rule("|", "|", { "rust", "rs" }):with_move(cond.done()),
     }
   end,
 }

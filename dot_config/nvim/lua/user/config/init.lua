@@ -9,5 +9,7 @@ if vim.g.neovide then require "user.config.neovide" end
 vim.filetype.add {
   filename = {
     ["Procfile"] = "sh",
+    ["launch.json"] = "json5",
+    [".vscode/launch.json"] = "json5",
   },
 }
