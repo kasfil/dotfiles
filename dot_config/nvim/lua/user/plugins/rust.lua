@@ -61,9 +61,14 @@ return {
 
           require("which-key").add(wk_format)
         end,
+        lsp = {
+          enabled = true,
+          actions = true,
+          completion = true,
+          hover = true,
+          name = "crates.nvim",
+        },
       }
-      -- Include crates in cmp completion source
-      require("crates.completion.cmp").setup()
     end,
   },
 }
