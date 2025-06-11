@@ -41,8 +41,10 @@ export PATH="/home/kasf/.local/share/fnm:$PATH"
 export PATH="$PATH:/home/kasf/.local/bin"
 
 export GOROOT="$HOME/.gobrew/current/go"
+export GOBIN="$HOME/.gobrew/current/bin"
 
 export HF_HOME="/mnt/secondary/.cache/huggingface"
+export UV_CACHE_DIR="/mnt/secondary/.cache/uv"
 
 eval "$(starship init bash)"
 eval "$(poetry completions bash)"
@@ -57,3 +59,7 @@ source /home/kasf/.config/broot/launcher/bash/br
 
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

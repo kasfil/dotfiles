@@ -24,6 +24,10 @@ return {
           autofocus = true,
           border = "single",
         },
+        completion = {
+          crates = { enabled = true },
+          cmp = { enabled = true },
+        },
         on_attach = function(bufnr)
           local desc_prefix = "Cargo: "
           local map_prefix = "<leader>c"
