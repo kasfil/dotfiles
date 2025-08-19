@@ -8,6 +8,7 @@ completion-replace = true
 completion-trigger-len = 1
 true-color = true
 color-modes = true
+trim-trailing-whitespace = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -23,6 +24,7 @@ cursor-line = "info"
 [editor.statusline]
 left = [
   "mode",
+  "spacer",
   "version-control",
   "file-name",
   "read-only-indicator",
@@ -35,7 +37,7 @@ right = [
   "selections",
   "register",
   "position",
-  "file-encoding",
+  "file-indent-style",
 ]
 
 [editor.indent-guides]
@@ -69,6 +71,7 @@ esc = ["collapse_selection", "keep_primary_selection", ":w"]
 "C-k" = "jump_view_up"
 "C-l" = "jump_view_right"
 "K" = "insert_newline"
+
 # Move line up/down using A-k, A-j
 "A-k" = [
   "extend_to_line_bounds",
@@ -83,6 +86,22 @@ esc = ["collapse_selection", "keep_primary_selection", ":w"]
   "paste_before",
 ]
 
+[keys.normal."space"]
+c = ":buffer-close"
+# remapping for git operation
+
+[keys.normal."space".g]
+d = ":sh zellij run -c -f -n 'Git diff' --height 80%% --width 80%% -x 10%% -y 10%% -- git diff %{buffer_name}"
+u = ":sh zellij run -c -f -n 'Lazygit' --height 80%% --width 80%% -x 10%% -y 10%% -- lazygit"
+
+[keys.normal.C-y]
+# Open the file(s) in the current window
+y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh open %{buffer_name}"
+# Open the file(s) in a vertical split
+v = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh vsplit %{buffer_name}"
+# Open the file(s) in a horizontal split
+h = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh hsplit %{buffer_name}"
+
 [keys.normal.g]
 q = ":bc"
 Q = ":bc!"
@@ -92,9 +111,6 @@ b = ":bn"
 
 [keys.normal."["]
 b = ":bp"
-
-[keys.normal.space]
-c = ":buffer-close"
 
 [keys.insert]
 up = "no_op"
@@ -107,6 +123,10 @@ home = "no_op"
 end = "no_op"
 # VSCode-like auto-completeion (pretty much all IDEs do it on C-space)
 "C-space" = "completion"
+
+[keys.insert.j]
+k = "normal_mode"
+j = "normal_mode"
 
 # Config Mode
 [keys.normal."A-c"]

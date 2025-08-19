@@ -9,7 +9,7 @@
 "constant.character.escape" = "orange"
 "string" = "green"
 "string.regexp" = "blue"
-"comment" = "grey0"
+"comment" = { fg = "grey0", modifiers = ["italic"] }
 "variable" = "fg0"
 "variable.builtin" = "blue"
 "variable.parameter" = "fg0"
@@ -76,6 +76,10 @@
 "ui.virtual.whitespace" = { fg = "bg4" }
 "ui.virtual.indent-guide" = { fg = "bg4" }
 "ui.virtual.ruler" = { bg = "bg3" }
+"ui.virtual.jump-label" = { fg = "bg0", bg = "yellow", modifiers = [
+  "bold",
+  "italic",
+] }
 
 "hint" = "blue"
 "info" = "aqua"
