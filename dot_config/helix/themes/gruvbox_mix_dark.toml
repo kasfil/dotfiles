@@ -80,6 +80,7 @@
   "bold",
   "italic",
 ] }
+"ui.virtual.inlay-hint" = { fg = "bg3", modifiers = ["italic"] }
 
 "hint" = "blue"
 "info" = "aqua"
