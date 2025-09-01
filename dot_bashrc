@@ -29,6 +29,15 @@ unset rc
 
 HISTIGNORE="$HISTIGNORE:jrnl *:nvim*:z:z *:source *:cd *:code*:codium*:docker-compose *:poetry*:ls *"
 
+alias ua-drop-caches='sudo paccache -rk3; paru -Sc --aur --noconfirm'
+alias ua-update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && ua-drop-caches \
+      && paru -Syyu --noconfirm'
+
 source $HOME/.bash_scripts/nnn.sh
 source $HOME/.bash_scripts/drone_repo.sh
 source $HOME/.bash_scripts/system.sh
@@ -63,3 +72,4 @@ source /home/kasf/.config/broot/launcher/bash/br
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+. "$HOME/.cargo/env"
