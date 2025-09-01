@@ -23,7 +23,7 @@ return {
           "dirvish",
           "fugitive",
           "aerial",
-          "neo-tree",
+          "NvimTree",
           "sagafinder",
           "sagatypehierarchy",
           "sagacallhierarchy",

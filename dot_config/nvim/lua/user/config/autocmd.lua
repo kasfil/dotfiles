@@ -109,7 +109,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
         vim.cmd "close"
-        pcall(_G.MiniBufremove, event.buf)
+        pcall(MiniBufremove, event.buf)
       end, {
         buffer = event.buf,
         silent = true,
@@ -222,6 +222,29 @@ aucmd({ "CursorMoved", "CursorMovedI", "WinScrolled" }, {
     if visual_distance_to_eof < scrolloff then
       local win_view = vim.fn.winsaveview()
       vim.fn.winrestview { topline = win_view.topline + scrolloff - visual_distance_to_eof }
+    end
+  end,
+})
+
+aucmd("FileType", {
+  pattern = "*",
+  callback = function(event)
+    local ft = vim.bo[event.buf].filetype
+    local installed = require("nvim-treesitter").get_installed()
+
+    if vim.tbl_contains(installed, ft) then
+      if pcall(vim.treesitter.start) then
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    else
+      if vim.tbl_contains(require "nvim-treesitter", ft) then
+        require("nvim-treesitter").install { ft }
+        if pcall(vim.treesitter.start) then
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end
     end
   end,
 })

@@ -1,7 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
-  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -16,12 +15,7 @@ return {
       cond = function() return vim.fn.executable "make" == 1 end,
     },
     "nvim-telescope/telescope-ui-select.nvim",
-    {
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      -- This will not install any breaking changes.
-      -- For major updates, this must be adjusted manually.
-      version = "^1.0.0",
-    },
+    "nvim-telescope/telescope-live-grep-args.nvim",
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
     "nvim-tree/nvim-web-devicons",

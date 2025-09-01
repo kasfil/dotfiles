@@ -24,12 +24,13 @@ local option = {
   ignorecase = true,
   smartcase = true,
   cmdheight = 0,
+  tabstop = 4,
   softtabstop = 4,
   shiftwidth = 4,
   expandtab = false,
   foldcolumn = "1",
   foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
   foldlevel = 99,
   cursorline = true,
   showtabline = 2,
@@ -45,7 +46,7 @@ for k, v in pairs(option) do
   vim.opt[k] = v
 end
 
-vim.opt.wildignore:append { ".javac", "node_modules", "*.pyc" }
+vim.opt.wildignore:append { ".javac", "node_modules", "*.pyc", "*.pyo" }
 vim.opt.wildignore:append { ".aux", ".out", ".toc" } -- LaTeX
 vim.opt.wildignore:append {
   ".o",

@@ -2,33 +2,9 @@
 return {
   {
     "kevinhwang91/nvim-ufo",
-    event = { "BufReadPost" },
+    event = { "BufReadPre" },
     dependencies = { "kevinhwang91/promise-async" },
     opts = {},
-  },
-  {
-    "lewis6991/satellite.nvim",
-    event = { "VeryLazy" },
-    opts = {
-      excluded_filetypes = {
-        "neo-tree",
-        "aerial",
-        "dbui",
-        "dbout",
-        "fugitive",
-        "blame",
-        "gitsigns-blame",
-        "fugitiveblame",
-        "neotest-output",
-        "neotest-output-panel",
-        "neotest-summary",
-        "qf",
-        "grug-far",
-        "dap-float",
-        "dap-repl",
-        "lspinfo",
-      },
-    },
   },
   {
     "luukvbaal/statuscol.nvim",
@@ -37,7 +13,7 @@ return {
       local builtin = require "statuscol.builtin"
       require("statuscol").setup {
         relculright = true,
-        ft_ignore = { "neo-tree", "sagaoutline", "fugitive" },
+        ft_ignore = { "NvimTree", "sagaoutline", "fugitive" },
         bt_ignore = { "nofile" },
         segments = {
           {
@@ -89,7 +65,7 @@ return {
       indent = {
         highlight = "IblIndent",
         char = "▏",
-        tab_char = "║",
+        tab_char = "╎",
       },
       scope = {
         enabled = true,
@@ -114,8 +90,6 @@ return {
   {
     "stevearc/quicker.nvim",
     event = "FileType qf",
-    ---@module "quicker"
-    ---@type quicker.SetupOptions
     opts = {},
   },
   {
@@ -132,8 +106,8 @@ return {
         options = {
           numbers = "none",
           themable = true,
-          close_command = function(bufnum) _G.MiniBufremove.delete(bufnum, false) end,
-          right_mouse_command = function(bufnum) _G.MiniBufremove.delete(bufnum, false) end,
+          close_command = function(bufnum) MiniBufremove.delete(bufnum, false) end,
+          right_mouse_command = function(bufnum) MiniBufremove.delete(bufnum, false) end,
           left_mouse_command = "buffer %d",
           tab_size = 27,
           indicator = {
@@ -147,7 +121,7 @@ return {
           },
           offsets = {
             {
-              filetype = "neo-tree",
+              filetype = "NvimTree",
               text = "File Explorer",
               text_align = "center",
               separator = true,
@@ -173,7 +147,7 @@ return {
           },
           color_icons = true,
           get_element_icon = function(element)
-            local icon, hl, _ = _G.MiniIcons.get("filetype", element.filetype)
+            local icon, hl, _ = MiniIcons.get("filetype", element.filetype)
             return icon, hl
           end,
           separator_style = { "▌", "▌" },
@@ -272,5 +246,22 @@ return {
         },
       }
     end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    event = { "VeryLazy" },
+    lazy = true,
+    keys = {
+      { "<leader>e", "<Cmd>NvimTreeToggle<CR>", desc = "Toggle Filetree", noremap = true },
+      { "<leader>o", "<Cmd>NvimTreeFocus<CR>", desc = "Focus Filetree", noremap = true },
+    },
+    opts = {
+      view = { width = 30 },
+      renderer = {
+        group_empty = true,
+        indent_width = 1,
+      },
+      filters = { dotfiles = true },
+    },
   },
 }
