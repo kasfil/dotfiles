@@ -10,43 +10,9 @@ basedpyright.analysis.typeCheckingMode = "standard"
 command = "ruff"
 args = ["server"]
 
-[language-server.ruff.config.settings]
-lineLength = 100
-
-[language-server.ruff.config.settings.lint]
-select = [
-  "E",
-  "F",
-  "W",
-  "B",
-  "I",
-  "A",
-  "RUF",
-  "COM",
-  "N",
-  "LOG",
-  "ERA",
-  "W",
-  "UP",
-  "ANN",
-  "ASYNC",
-  "S",
-  "RET",
-  "TCH",
-  "ARG",
-  "PTH",
-]
-preview = true
-
-[language-server.ruff.config.settings.format]
-preview = true
-quote-style = "double"
-docstring-code-format = true
-indent-style = "space"
-
 [[language]]
 name = "python"
-language-servers = ["basedpyright", "ruff"]
+language-servers = ["basedpyright"]
 roots = ["pyproject.toml", "setup.py", "poetry.lock", ".git", ".jj", ".venv/"]
 injection-regex = "py(thon)?"
 file-types = [
@@ -79,13 +45,6 @@ auto-format = true
 
 roots = ["Cargo.toml", "Cargo.lock"]
 
-[language.auto-pairs]
-'(' = ')'
-'{' = '}'
-'[' = ']'
-'"' = '"'
-'`' = '`'
-
 [language-server.rust-analyzer]
 command = "rust-analyzer"
 
@@ -99,3 +58,47 @@ inlayHints.typeHints.hideClosureInitialization = false
 
 [language-server.rust-analyzer.config.check]
 command = "clippy"
+
+[language-server.rust-analyzer.config.cargo]
+features = "all"
+
+
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "html"
+roots = [".git"]
+language-servers = ["emmet-lsp"]
+
+[[language]]
+name = "jinja"
+language-servers = ["vscode-html-language-server", "superhtml", "emmet-lsp"]
+
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]

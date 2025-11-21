@@ -1,4 +1,4 @@
-theme = "lugh_dark"
+theme = "gruvbox-pale"
 
 [editor]
 line-number = "relative"
@@ -10,6 +10,17 @@ true-color = true
 color-modes = true
 trim-trailing-whitespace = true
 
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+tabpad = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+tab = "⇥"
+tabpad = "◻"
+newline = "⤶"
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -19,7 +30,7 @@ select = "underline"
 hidden = false
 
 [editor.inline-diagnostics]
-cursor-line = "info"
+cursor-line = "disable"
 
 [editor.statusline]
 left = [
@@ -41,7 +52,8 @@ right = [
 ]
 
 [editor.indent-guides]
-character = "│"
+character = "┃"
+skip-levels = 1
 render = true
 
 [editor.lsp]
@@ -91,7 +103,7 @@ c = ":buffer-close"
 # remapping for git operation
 
 [keys.normal."space".g]
-d = ":sh zellij run -c -f -n 'Git diff' --height 80%% --width 80%% -x 10%% -y 10%% -- git diff %{buffer_name}"
+d = ":sh zellij run -c -f -n 'Diff' --height 80%% --width 80%% -x 10%% -y 10%% -- git diff %{buffer_name}"
 u = ":sh zellij run -c -f -n 'Lazygit' --height 80%% --width 80%% -x 10%% -y 10%% -- lazygit"
 
 [keys.normal.C-y]
@@ -123,10 +135,6 @@ home = "no_op"
 end = "no_op"
 # VSCode-like auto-completeion (pretty much all IDEs do it on C-space)
 "C-space" = "completion"
-
-[keys.insert.j]
-k = "normal_mode"
-j = "normal_mode"
 
 # Config Mode
 [keys.normal."A-c"]

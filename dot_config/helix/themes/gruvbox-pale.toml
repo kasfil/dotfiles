@@ -1,0 +1,51 @@
+## Original Author
+# URL: https://github.com/sainnhe/gruvbox-material
+# Author: sainnhe
+# License: MIT License
+
+inherits = "gruvbox-material"
+
+"ui.virtual.whitespace" = { fg = "bg2" }
+"ui.virtual.inlay-hint" = { fg = "bg3", modifiers = ["italic"] }
+"diagnostic" = { modifiers = ["underlined"] }
+
+[palette]
+
+bg0 = "#181818"
+bg1 = "#202020"
+bg2 = "#252525"
+bg3 = "#2D2B2A"
+bg4 = "#383634"
+bg5 = "#464442"
+
+bg_statusline1 = "#252525"
+bg_statusline2 = "#2e2d2c"
+bg_statusline3 = "#484644"
+
+bg_diff_green = "#1f2617"
+bg_visual_green = "#2a332c"
+bg_diff_red = "#2a1b1c"
+bg_visual_red = "#322526"
+bg_diff_blue = "#16252a"
+bg_visual_blue = "#253233"
+bg_visual_yellow = "#3a3325"
+bg_current_word = "#2e2d2c"
+
+fg0 = "#b9ab8f"
+fg1 = "#c4b69a"
+
+red = "#c56f6b"
+orange = "#c18a63"
+yellow = "#b89d6b"
+green = "#9a9f72"
+aqua = "#6f8a7e"
+blue = "#7b9590"
+purple = "#a88995"
+
+bg_red = "#c56f6b"
+bg_green = "#9a9f72"
+bg_yellow = "#b89d6b"
+
+grey0 = "#9c9281"
+grey1 = "#8b8273"
+grey2 = "#7a7165"
