@@ -17,8 +17,8 @@ tabpad = "all"
 newline = "all"
 
 [editor.whitespace.characters]
-tab = "⇥"
-tabpad = "◻"
+tab = ""
+tabpad = ""
 newline = "⤶"
 
 [editor.cursor-shape]
@@ -103,16 +103,16 @@ c = ":buffer-close"
 # remapping for git operation
 
 [keys.normal."space".g]
-d = ":sh zellij run -c -f -n 'Diff' --height 80%% --width 80%% -x 10%% -y 10%% -- git diff %{buffer_name}"
-u = ":sh zellij run -c -f -n 'Lazygit' --height 80%% --width 80%% -x 10%% -y 10%% -- lazygit"
+d = ":sh zellij run -f -n 'Diff' --height 80%% --width 80%% -x 10%% -y 10%% -- git diff %{buffer_name}"
+u = ":sh zellij run -c -f -n 'GitUI' --height 80%% --width 80%% -x 10%% -y 10%% -- gitui"
 
 [keys.normal.C-y]
 # Open the file(s) in the current window
 y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh open %{buffer_name}"
 # Open the file(s) in a vertical split
-v = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh vsplit %{buffer_name}"
+v = ":sh zellij run -n 'Yazi vsplit' -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh vsplit %{buffer_name}"
 # Open the file(s) in a horizontal split
-h = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh hsplit %{buffer_name}"
+h = ":sh zellij run -n 'Yazi split' -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh hsplit %{buffer_name}"
 
 [keys.normal.g]
 q = ":bc"

@@ -8,6 +8,7 @@ inherits = "rose_pine"
 "ui.statusline" = { fg = "text", bg = "surface" }
 
 "ui.help" = { fg = "text", bg = "surface" }
+"ui.virtual.whitespace" = { fg = "highlight_low" }
 
 "keyword.control.return" = { fg = "pine", modifiers = ["italic"] }
 
